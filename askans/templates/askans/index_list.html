@@ -1,0 +1,234 @@
+{% load staticfiles %}
+<!DOCTYPE html>
+<html lang="en"><head><meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+    
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    
+    <meta name="description" content="AskAns">
+    <meta name="author" content="Kuklina">
+    <link rel="icon" href="https://getbootstrap.com/favicon.ico">
+
+    <title>Navbar Template for Bootstrap</title>
+
+    <!-- Bootstrap core CSS -->
+   	<link rel="stylesheet" href="{% static 'p1_files/bootstrap.min.css' %}">
+
+
+    <!-- IE10 viewport hack for Surface/desktop Windows 8 bug -->
+    <link rel="stylesheet" href="{% static 'p1_files/ie10-viewport-bug-workaround.css' %}">
+
+    <!-- Custom styles for this template -->
+    <link rel="stylesheet" href="{% static 'p1_files/navbar.css' %}">
+
+    <script src="./p1_files/ie-emulation-modes-warning.js.Без названия"></script>
+
+ 
+    <!-- MY.CSS -->
+    <link rel="stylesheet" href="{% static 'p1_files/my.css' %}">
+
+  </head>
+
+  <body>
+
+    <div class="container">
+
+<!-- Static navbar -->
+      <nav class="navbar navbar-default">
+        <div class="container-fluid">
+          <div class="navbar-header">
+<!--              -->
+<!--              -->
+<!--    для сворачивания в меню    -->
+            <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar" aria-expanded="false" aria-controls="navbar">
+              <span class="sr-only">Toggle navigation</span>
+              <span class="icon-bar"></span>
+              <span class="icon-bar"></span>
+              <span class="icon-bar"></span>
+            </button>
+              
+<!--            -->
+<!--            -->
+<!--     #hh - id, чтобы переопределить botstrap       -->
+            <a class="navbar-brand" href="#"><span>&nbsp;&nbsp;<img src="{% static 'pic/askans.png' %}" style="height: 43px; width: 43px; margin-top: -12px;"/>&nbsp;&nbsp;</span><b><span id="hh">AskKuklina</span></b></a>
+            
+           </div>
+          <div id="navbar" class="navbar-collapse collapse">
+              
+            <ul class="nav navbar-nav">
+              <li class="active" style="width: 300px;">
+<!--                -->
+<!--                -->
+<!--          ask   -->
+                <form class="navbar-form navbar-left" role="search">
+                  <div class="form-group">
+                    <input type="text" class="form-control" placeholder="Search">
+                  </div>
+                  <button type="submit" class="btn btn-primary">Go!</button>
+                </form>     
+               </li>
+               <li> <button type="button" class="btn btn-success" style="margin-top: 8px;">Ask!</button> </li>
+            </ul>
+                
+<!--                
+<!--                -->
+<!--                Правая часть-->
+                <ul class="nav navbar-nav navbar-right">
+<!--              <li class="active"><a href="https://getbootstrap.com/examples/navbar/">Default <span class="sr-only">(current)</span></a></li>-->
+              <li>
+                  <div class="nav navbar-right">
+                    <div class="navbar-text">
+                        <img src="{% static 'pic/guest.png' %}" class="avatar">
+                        <a href="#">Username</a>
+                    </div>
+                </div>                    
+              </li>
+              <li><a href="#">Настройки</a></li>
+              <li><a href="#">Выйти</a></li>
+            </ul>
+          </div><!--/.nav-collapse -->
+        </div><!--/.container-fluid -->
+      </nav>
+        
+<!--        -->
+<!--        -->
+<!--        -->
+<!--        -->
+<!--        -->
+<!-- MAIN   -->
+      
+      <div class="row">
+          <div class="col-md-8">
+               <span><a href="#">New questios</a>&nbsp;&nbsp;</span>
+               <span><a href="#">Popular questios</a></span>
+<!-- QUESTION  -->
+<!--              <div class="question">-->
+<!-- LEFT BOX -->
+                  <div class="row question">
+                      <div class="col-md-3">
+                        <img src="{% static 'pic/guest.png' %}" class="img-thumbnail avatar-q">
+                        <span class="label label-primary" style="margin-left: 10px; margin-bottom: 10px;"> 33 </span> 
+                        <span class="label label-danger" style="margin-left: 10px;"> - </span>
+                 &nbsp; <span class="label label-success" style="margin-left: -7px;"> + </span>
+						<br>
+						<br>
+                      </div>
+<!-- RIGHT BOX -->
+                      <div class="col-md-9">
+                        <br>
+<!--                          lead это выделенный параграф -->
+                        <p class="lead" style="text-decoration: underline;"><a href="#">Q1Q1Q1</a></p> 
+                        <p class="preview-q">Повседневная практика показывает, что начало повседневной работы по формированию позиции позволяет выполнять важные задания по разработке новых предложений...</p>
+                        <a href="#">Ответы <span class="badge">42</span></a>
+                          &nbsp;&nbsp;&nbsp;&nbsp;Тэги: <span id="tags-q"></span> 
+                      </div>
+                  </div>
+
+<!--              </div>-->
+              
+<!-- QUESTION  -->
+<!--              <div class="question">-->
+<!-- LEFT BOX -->
+                  <div class="row question">
+                      <div class="col-md-3">
+                      <img src="{% static 'pic/guest.png' %}" class="img-thumbnail avatar-q">
+                        <span class="label label-primary" style="margin-left: 10px; margin-bottom: 10px;"> 33 </span> 
+                        <span class="label label-danger" style="margin-left: 10px;"> - </span>
+                 &nbsp; <span class="label label-success" style="margin-left: -7px;"> + </span>
+						<br>
+						<br>
+                      </div>
+<!-- RIGHT BOX -->
+                      <div class="col-md-9">
+                        <br>
+                        <p class="lead" style="text-decoration: underline;"><a href="#">Q2Q2Q2</a></p>
+                        <p class="preview-q">Повседневная практика показывает, что начало повседневной работы по формированию позиции позволяет выполнять важные задания по разработке новых предложений...</p>
+                        <a href="#">Ответы <span class="badge">42</span></a>
+                          &nbsp;&nbsp;&nbsp;&nbsp;Тэги: <span id="tags-q"></span> 
+                      </div>
+                  </div>
+
+<!--              </div>-->
+              <!-- QUESTION  -->
+<!--              <div class="question">-->
+<!-- LEFT BOX -->
+                  <div class="row question">
+                      <div class="col-md-3">
+                       <img src="{% static 'pic/guest.png' %}" class="img-thumbnail avatar-q">
+                        <span class="label label-primary" style="margin-left: 10px; margin-bottom: 10px;"> 33 </span> 
+                        <span class="label label-danger" style="margin-left: 10px;"> - </span>
+                 &nbsp; <span class="label label-success" style="margin-left: -7px;"> + </span>
+						<br>
+						<br>
+                      </div>
+<!-- RIGHT BOX -->
+                      <div class="col-md-9">
+                        <br>
+                        <p class="lead" style="text-decoration: underline;"><a href="#">Q3Q3Q3</a></p>
+                        <p class="preview-q">Повседневная практика показывает, что начало повседневной работы по формированию позиции позволяет выполнять важные задания по разработке новых предложений...</p>
+                        <a href="#">Ответы <span class="badge">42</span></a>
+                          &nbsp;&nbsp;&nbsp;&nbsp;Тэги: <span id="tags-q"></span> 
+                      </div>
+                  </div>
+
+<!--              </div>-->
+              
+          </div>
+          
+<!-- TAGS & USERS -->
+          <div class="col-md-4">
+              <div class="tags">
+                  <h3>Tags</h3>
+                  <div>
+                    <span style="font-size: 15px; color: #00ff00;"> Tag_1 </span>
+                    <span style="font-size: 25px; color: #ff00ce;"> Tag_2</span>
+                    <span style="font-size: 13px; color: #ffa700;"> Tag_3 </span>
+                  </div>
+                  <div>
+                    <span style="font-size: 13px; color: #ffa700;"> Tag_6 </span>
+                    <span style="font-size: 15px; color: #00ff00;"> Tag_4 </span>
+                    <span style="font-size: 25px; color: #ff00ce;"> Tag_5</span>
+                  </div>
+                  <div>
+                    <span style="font-size: 15px; color: #00ff00;"> Tag_7 </span>
+                    <span style="font-size: 13px; color: #ffa700;"> Tag_9 </span>
+                     <span style="font-size: 25px; color: #ff00ce;"> Tag_8</span>
+                  </div>                  
+              </div>
+              <div class="top-users">
+                  <h3>Top users</h3>
+                  <ul>
+                    <li><a href="#">Pupkin</a></li>
+                    <li><a href="#">Petrov</a></li>
+                    <li><a href="#">Ivanova</a></li>
+                  </ul>
+              </div>
+          </div>
+       </div>
+        
+<!-- PAGINATOR -->
+    <nav aria-label="Page navigation">
+      <ul class="pagination">
+        <li><a href="#">1</a></li>
+        <li><a href="#">2</a></li>
+        <li><a href="#">3</a></li>
+        <li><a href="#">4</a></li>
+        <li><a href="#">5</a></li>
+      </ul>
+    </nav>
+        
+        <footer style="text-align:  center; color: #650065;">&copy; Kuklina Nina, 2017</footer>
+    </div> <!-- /container -->
+
+
+    <!-- Bootstrap core JavaScript
+    ================================================== -->
+    <!-- Placed at the end of the document so the pages load faster -->
+    <script src="./p1_files/jquery.min.js.Без названия"></script>
+    <script>window.jQuery || document.write('<script src="../../assets/js/vendor/jquery.min.js"><\/script>')</script>
+    <script src="./p1_files/bootstrap.min.js.Без названия"></script>
+    <!-- IE10 viewport hack for Surface/desktop Windows 8 bug -->
+    <script src="./p1_files/ie10-viewport-bug-workaround.js.Без названия"></script>
+  
+
+</body></html>

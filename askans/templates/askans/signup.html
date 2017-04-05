@@ -1,0 +1,123 @@
+<!-- это пробный по /base url -->
+
+<!-- подключать, указывая app -->
+{% extends "askans/base.html" %}
+
+
+
+<!-- переопределяем базовый блок -->
+{% block title %} Posts {% endblock %}
+
+<!-- переопределяем базовый блок -->
+{% block main %}
+
+<h3>Registration</h3>
+
+              <div id="err_box" style="color: #FF0000;"></div>
+
+              <form style="margin-left:10px;">
+                  Login <br><input type="text" class="edit" id="t1" placeholder="login..." maxlength="120" style="width: 300px;" title = "Input title here">
+                  <br>
+                  <br>
+                  Email <br><input type="text" class="edit" id="t2" placeholder="email@mail.ru" maxlength="120" style="width: 300px;" title = "Input you email here">
+                  <br>
+                  <br>
+                  NickName <br><input type="text" class="edit" id="t3" placeholder="nickname..." maxlength="120" style="width: 300px;" title = "Input you nickname here">
+                  <br>
+                  <br>
+                  Password <br><input type="password" class="edit" id="t4" placeholder="password..." maxlength="120" style="width: 300px;" title = "Input your password">
+                  <br>
+                  <br>
+                  Repeat password <br><input type="password" class="edit" id="t5" placeholder="repeat password..." maxlength="120" style="width: 300px;" title = "Repeat your password">
+                  <br>
+<!--                  type="submit" -->
+                  <br>
+                  Upload avatar <br><input type="file" name="img_file" accept="image/jpeg">
+                  <br>
+                  <button type="button" class="btn btn-primary" id="Register" onclick="fControl()">Sign Up!</button>
+              </form>
+		<script>
+                  function normChar(c)
+                  {
+                      let s = "0123456789qwertyuiopasdfghjklzxcvbnm";
+                      if(s.indexOf(c) != -1) return true;
+                      return false;
+                  }
+
+                  function normString(s)
+                  {
+                      const n = s.length;
+                      for(let i = 0; i < n; i++)
+                      {
+                          let c = s.charAt(i);
+                          if(normChar(c) == false) return false;
+                      }
+                    return true;
+                  }
+
+                    function fControl()
+                    {
+                      let s1 = document.getElementById('t1').value + "";
+                      let s2 = document.getElementById('t2').value + "";
+                      let s3 = document.getElementById('t3').value + "";
+                      let s4 = document.getElementById('t4').value + "";
+                      let s5 = document.getElementById('t5').value + "";
+
+                      if (s1 == "" || s2 == "" || s3 == "" || s4 == "" || s5 == "")
+                      {
+                          //alert("Emty text!");
+                          document.getElementById('err_box').innerHTML = "Empty text!";
+                          return;
+                      }
+
+                      if(normString(s1) == false)
+                      {
+                        //alert("No correct input");
+                        document.getElementById('err_box').innerHTML = "No correct input";
+                        return;
+                      }
+
+                      if(normString(s2) == false)
+                      {
+                        //alert("No correct input");
+                        document.getElementById('err_box').innerHTML = "No correct input";
+                        return;
+                      }
+
+                      if(normString(s3) == false)
+                      {
+                        //alert("No correct input");
+                        document.getElementById('err_box').innerHTML = "No correct input";
+                        return;
+                      }
+
+                      if(normString(s4) == false)
+                      {
+                        //alert("No correct input");
+                        document.getElementById('err_box').innerHTML = "No correct input";
+                        return;
+                      }
+
+                      if(normString(s5) == false)
+                      {
+                        //alert("No correct input");
+                        document.getElementById('err_box').innerHTML = "No correct input";
+                        return;
+                      }
+
+                        document.getElementById('err_box').innerHTML = "";
+                    }
+          </script>
+{% endblock %}
+            
+<!--
+ {% for post in posts %}
+        <div>
+            <p>published: {{ post.published_date }}</p>
+            <h1><a href="">{{ post.title }}</a></h1>
+            <p>{{ post.text|linebreaksbr }}</p>
+        </div>
+ {% endfor %}
+            
+        </body>
+    </html>-->

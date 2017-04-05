@@ -1,0 +1,94 @@
+<!-- подключать, указывая app -->
+{% extends "askans/base.html" %}
+
+
+<!-- переопределяем базовый блок -->
+{% block title %} Question {% endblock %}
+
+<!-- переопределяем базовый блок -->
+{% block main %}
+<div class="row question">
+                      <div class="col-md-3">
+                        <img src="..\..\static\pic\guest.png" class="img-thumbnail avatar-q">
+                        <span class="label label-primary" style="margin-left: 10px; margin-bottom: 10px;"> 33 </span>
+                        <span class="label label-danger" style="margin-left: 10px;"> - </span>
+                 &nbsp; <span class="label label-success" style="margin-left: -7px;"> +</span>
+                        <br><br>
+                      </div>
+<!-- RIGHT BOX -->
+                      <div class="col-md-9">
+                        <br>
+<!--                          lead это выделенный параграф -->
+                        <p class="lead" style="text-decoration: underline;"><a href="#">Q1Q1Q1</a></p>
+                        <p class="preview-q">Повседневная практика показывает, что начало повседневной работы по формированию позиции позволяет выполнять важные задания по разработке новых предложений...</p>
+                        Tags: &nbsp;<span><a href="#">hi-tech</a></span> &nbsp;<span><a href="#">python</a></span>
+                      </div>
+                  </div>
+
+              <hr style="color: #a670c7; size: 2px;">
+
+<!-- ANSWER -->
+
+              <div class="row answer">
+                      <div class="col-md-3">
+                        <img src="..\..\static\pic\guest.png" class="img-thumbnail avatar-a">
+                        <span class="label label-primary" style="margin-left: 71px; margin-bottom: 10px;"> 33 </span>
+                        <span class="label label-danger" style="margin-left: 10px;"> - </span>
+                 &nbsp; <span class="label label-success" style="margin-left: -7px;"> +</span>
+                        <br><br>
+                      </div>
+<!-- RIGHT BOX -->
+                      <div class="col-md-9">
+                       <p class="preview-a">Повседневная практика показывает, что начало повседневной работы по формированию позиции позволяет выполнять важные задания по разработке новых предложений...</p>
+                        <input type="checkbox"> Correct!
+                      </div>
+                  </div>
+
+<!-- ANSWER -->
+
+              <div class="row answer">
+                      <div class="col-md-3">
+                        <img src="..\..\static\pic\guest.png" class="img-thumbnail avatar-a">
+                        <span class="label label-primary" style="margin-left: 71px; margin-bottom: 10px;"> 33 </span>
+                        <span class="label label-danger" style="margin-left: 10px;"> - </span>
+                 &nbsp; <span class="label label-success" style="margin-left: -7px;"> +</span>
+                        <br><br>
+                      </div>
+<!-- RIGHT BOX -->
+                      <div class="col-md-9">
+                       <p class="preview-a">Повседневная практика показывает, что начало повседневной работы по формированию позиции позволяет выполнять важные задания по разработке новых предложений...</p>
+                        <input type="checkbox"> Correct!
+                      </div>
+                  </div>
+
+<!-- ANSWER -->
+
+              <div class="row answer">
+                      <div class="col-md-3">
+                        <img src="..\..\static\pic\guest.png" class="img-thumbnail avatar-a">
+                        <span class="label label-primary" style="margin-left: 71px; margin-bottom: 10px;"> 33 </span>
+                        <span class="label label-danger" style="margin-left: 10px;"> - </span>
+                 &nbsp; <span class="label label-success" style="margin-left: -7px;"> +</span>
+                        <br><br>
+                      </div>
+<!-- RIGHT BOX -->
+                      <div class="col-md-9">
+                       <p class="preview-a">Повседневная практика показывает, что начало повседневной работы по формированию позиции позволяет выполнять важные задания по разработке новых предложений...</p>
+                        <input type="checkbox"> Correct!
+                      </div>
+                  </div>
+
+                    <hr>
+
+<!-- EDIT -->
+              <form style="margin-left:100px;">
+                  <textarea class="edit" cols="80" rows="5" placeholder="Enter your answer here..."></textarea>
+                  <br>
+<!--                  type="submit" -->
+                  <button type="button" class="btn btn-primary">Answer</button>
+              </form>
+###########################################################
+				<p>published: {{ q.published_date }}</p>
+				<h1><a href="">{{ q.title }}</a></h1>
+				<p>{{ q.text|linebreaksbr }}</p>
+{% endblock %}

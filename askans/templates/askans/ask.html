@@ -1,0 +1,51 @@
+<!-- это пробный по /base url -->
+
+<!-- подключать, указывая app -->
+{% extends "askans/base.html" %}
+
+
+
+<!-- переопределяем базовый блок -->
+{% block title %} Posts {% endblock %}
+
+<!-- переопределяем базовый блок -->
+{% block main %}
+<!-- титульник из моделей -->
+<h3>New Question</h3>
+	<form style="margin-left:10px;">
+                  Title <br><input type="text" class="edit" id="t1" placeholder="text..." maxlength="120" style="width: 700px;" title = "Input title here">
+                  <br>
+                  <br>
+                  Text <br><textarea class="edit" id="t2" rows="7" placeholder="text..." maxlength="1200" style="width: 700px;" title = "Input text here"></textarea>
+                  <br>
+                  <br>
+                  Tags <br><input type="text" class="edit" id="t3" placeholder="text..." maxlength="120" style="width: 700px;" title = "Input tags here">
+                  <br>
+<!--                  type="submit" -->
+                  <br>
+                  <button type="button" class="btn btn-primary" id="ask" onclick="fControlText()">Ask!</button>
+              </form>
+
+          <script>
+    function fControlText()
+              {
+                  let s1 = document.getElementById('t1').value + "";
+                  let s2 = document.getElementById('t2').value + "";
+                  let s3 = document.getElementById('t3').value + "";
+
+                  if (s1 == "" || s2 == "" || s3 == "") alert("Emty text!")
+              }
+          </script>
+{% endblock %}
+
+<!--
+ {% for post in posts %}
+        <div>
+            <p>published: {{ post.published_date }}</p>
+            <h1><a href="">{{ post.title }}</a></h1>
+            <p>{{ post.text|linebreaksbr }}</p>
+        </div>
+ {% endfor %}
+            
+        </body>
+    </html>-->
