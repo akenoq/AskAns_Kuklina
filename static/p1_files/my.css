@@ -1,0 +1,52 @@
+#hh
+{
+    font-size: 33px !important;
+    display: inline !important;
+}
+
+.avatar
+{
+    margin: -10px 0px;
+    height: 38px !important;
+}
+
+.avatar-q
+{
+    margin: 10px 10px 10px 10px;
+    height: 150px;
+    width: 150px;  
+}
+
+.question
+{
+    border: solid 1px #e7e7e7;
+    border-radius: 3px 3px 3px 3px;
+    padding: 10 px;
+    margin-top: 20px;
+    margin-bottom: 20px; 
+    margin-right: 10px;
+    margin-left: 10px; 
+/*
+    height: 200px;
+    position: relative;
+*/
+}
+
+.preview-q
+{
+    height: 90px;
+}
+
+.tags
+{
+    
+    
+    
+}
+
+.top-users
+{
+    
+    
+    
+}

@@ -25,7 +25,7 @@ def paginate(objects_list, request):
 def post_list(request):
     #создали переменную QuerySet: posts
     #теперь мы можем обращаться к нему, используя имя
-    posts_all = Post.objects.filter(published_date__lte=timezone.now()).order_by('published_date')
+    posts_all = Post.objects.filter().order_by('published_date')
 
     page,paginator = paginate(posts_all,request)
 
@@ -37,11 +37,9 @@ def post_list(request):
 
     try:
         posts = paginator.page(page)
-    except PageNotAnInteger:
-# If page is not an integer, deliver first page.
+    except PageNotAnInteger: # If page is not an integer, deliver first page.
         posts = paginator.page(1)
-    except EmptyPage:
-# If page is out of range (e.g. 9999), deliver last page of results.
+    except EmptyPage: # If page is out of range (e.g. 9999), deliver last page of results.
         posts = paginator.page(paginator.num_pages)
 
     return render(request, 'askans/post_list.html', {'posts': posts})

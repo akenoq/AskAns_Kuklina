@@ -32,6 +32,12 @@
 */
 }
 
+.current_page
+{
+    color: red;
+    font-weight: bold;
+}
+
 .preview-q
 {
     height: 90px;
