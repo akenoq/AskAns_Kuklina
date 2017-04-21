@@ -1,23 +1,36 @@
 #подключаем определение времени
-from django.core import paginator
 from django.utils import timezone
 #пагинатор
 from django.core.paginator import Paginator, EmptyPage, PageNotAnInteger
 #404 error
 from django.shortcuts import render, get_object_or_404
+from django.http import Http404
 #включаем модли определенные в соседнем (".") файле models.py
 from .models import Post
 
+from django.urls import reverse
+from django.http import HttpResponseRedirect
 
 
 
 
 def paginate(objects_list, request):
+
+    one_page = request.GET.get('page')
+
     ###################################
     paginator = Paginator(objects_list, 2)  # по 2 на страницу
     ###################################
-    one_page = request.GET.get('page')
-    return one_page, paginator
+
+    try:
+        res_page = paginator.page(one_page)
+    except PageNotAnInteger: # If page is not an integer, deliver first page.
+        # res_page = paginator.page(1)
+        raise Http404("Incorect page number")
+    except EmptyPage: # If page is out of range (e.g. 9999), deliver last page of results.
+        res_page = paginator.page(paginator.num_pages)
+
+    return res_page
 
 
 
@@ -27,30 +40,18 @@ def post_list(request):
     #теперь мы можем обращаться к нему, используя имя
     posts_all = Post.objects.filter().order_by('published_date')
 
-    page,paginator = paginate(posts_all,request)
+    #page,paginator = paginate(posts_all,request)
 
-    # ###################################
-    # paginator = Paginator(posts_all, 2) #по 2 на страницу
-    # ###################################
-
-    # page = request.GET.get('page')
-
-    try:
-        posts = paginator.page(page)
-    except PageNotAnInteger: # If page is not an integer, deliver first page.
-        posts = paginator.page(1)
-    except EmptyPage: # If page is out of range (e.g. 9999), deliver last page of results.
-        posts = paginator.page(paginator.num_pages)
+    posts = paginate(posts_all, request)
 
     return render(request, 'askans/post_list.html', {'posts': posts})
-# return HttpResponse('Hello,world!');
 
-
+    #return HttpResponseRedirect(reverse('post_list', {'posts': posts}))
 
 
 def hot_list(request):
     posts = Post.objects.filter() #рейтинг orderz-by
-    return render(request, 'askans/hot_list.html', {'post':posts})
+    return render(request, 'askans/hot_list.html', {'posts':posts})
 
 #пока пробно с post моделью
 def question(request, id):
@@ -59,7 +60,8 @@ def question(request, id):
 
 #с тэгами
 def tag_list(request, tag):
-    posts = Post.objects.filter(published_date__lte=timezone.now()).order_by('published_date')
+    posts = Post.objects.order_by('published_date')
+
     return render(request, 'askans/tag_list.html', {'posts': posts})
 ################################доделать#####################################
 def login(request):
