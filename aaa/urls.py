@@ -31,8 +31,7 @@ urlpatterns = [
     #вывод главной страницы берет из вьюшки постлист
     url(r'^$', views.post_list, name='post_list'),
     url(r'^hot/$', views.hot_list, name='hot_list'), #дописать фильтрацию по тэгу во view
-    url(r'^tag/(?P<tag>\w+)/$', views.tag_list, name='tag_list'),  # \w буквы и цифры
-
+    url(r'^tag/(?P<tag_name>.+)/$', views.tag_list, name='tag_list'),  # \w буквы и цифры . все символы
     #############################по мануалу##################################
 	#url(r'^$', views.index_list, name='index_list'), #корень сайта
     ###############################################################

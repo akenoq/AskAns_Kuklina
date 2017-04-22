@@ -9,7 +9,7 @@ from askans.models import Person, Question, Answer, Tag, QuestionLike, AnswerLik
 class Command(BaseCommand):
 
     def gettext(self, n):
-        gentext = random.choice(
+        gentext = random.randint(1, n)*random.choice(
             ["Ругается на строчку import",
              "Библиотека AFMotors не подключается к Arduino Leonardo, с Uno все работает корректно",
              "Как оказалось, в новом JS есть классы",
@@ -17,7 +17,7 @@ class Command(BaseCommand):
              "Наверное, стоит прочитать книгу по алгоритмам, но все же, что мне выбрать?",
              "Неужели придется сносить базу данных и историю миграций?",
              "Никак не могу найти ошибку, но компилятор ругается на строчку"]
-        ) * random.randint(1, n)
+        )
         return gentext
 
     def handle(self, *args, **options):
@@ -40,8 +40,8 @@ class Command(BaseCommand):
             uu.save()
 
             pp = Person(
-                user = uu,
-                avatar = '/' + str(u) + '.jpg'
+                user=uu,
+                avatar='/' + str(u) + '.jpg'
             )
             pp.save()
 
@@ -49,11 +49,11 @@ class Command(BaseCommand):
 
         # TAG
         for t in range(0, 15):
-            try:
+             try:
                 ttt = Tag(name=random.choice(["ibm", "bluemix", "python", "arduino", "c++", "patterns", "javascript", "raspberry", "django", "html"]))
                 ttt.save()
-            except Exception:
-                pass
+             except Exception:
+                 pass
         tags = Tag.objects.all()
 
         # QUESTIONS
@@ -92,7 +92,7 @@ class Command(BaseCommand):
         answers = Answer.objects.all()
 
         # QLIKE
-        for i in range(0, 200):
+        for i in range(0, 20):
             ll = QuestionLike(
                 question=random.choice(questions),
                 user=random.choice(users),
@@ -107,7 +107,7 @@ class Command(BaseCommand):
             ll.question.save()
 
         # ALIKE
-        for i in range(0, 200):
+        for i in range(0, 20):
             ll = AnswerLike(
                 answer=random.choice(answers),
                 user=random.choice(users),

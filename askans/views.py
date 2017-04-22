@@ -6,7 +6,7 @@ from django.core.paginator import Paginator, EmptyPage, PageNotAnInteger
 from django.shortcuts import render, get_object_or_404
 from django.http import Http404
 #включаем модли определенные в соседнем (".") файле models.py
-from .models import Question
+from .models import Question, Answer
 
 from django.urls import reverse
 from django.http import HttpResponseRedirect
@@ -14,10 +14,10 @@ from django.http import HttpResponseRedirect
 
 def paginate(objects_list, request):
 
-    one_page = request.GET.get('page')
+    one_page = request.GET.get('page', 1)
 
     ###################################
-    paginator = Paginator(objects_list, 2)  # по 2 на страницу
+    paginator = Paginator(objects_list, 5)  # по 2 на страницу
     ###################################
 
     try:
@@ -39,13 +39,10 @@ def paginate(objects_list, request):
 
     return res_page, page_range
 
-
-
-# Create your views here.
 def post_list(request):
     #создали переменную QuerySet: posts
     #теперь мы можем обращаться к нему, используя имя
-    posts_all = Question.objects.filter().order_by('published_date')
+    posts_all = Question.objects.last_questions()
 
     #page,paginator = paginate(posts_all,request)
 
@@ -55,22 +52,25 @@ def post_list(request):
 
     #return HttpResponseRedirect(reverse('post_list', {'posts': posts}))
 
-
 def hot_list(request):
-    posts = Question.objects.filter() #рейтинг orderz-by
-    return render(request, 'askans/hot_list.html', {'posts':posts})
+    posts_all = Question.objects.hot_questions()
+    posts, page_range = paginate(posts_all, request)
+    return render(request, 'askans/hot_list.html', {'page': posts, 'page_range': page_range})
 
 #пока пробно с post моделью
 def question(request, id):
     q = get_object_or_404(Question, id=id) #QuerySet q, который пердаетм в шаблон
-    return render(request, 'askans/question.html', {'q': q})
+    answers = Answer.objects.filter(question__id=id)
+
+    posts, page_range = paginate(answers, request)
+
+    return render(request, 'askans/question.html', {'q': q, 'page': posts, 'page_range': page_range})
 
 #с тэгами
-def tag_list(request, tag):
-    posts = Question.objects.order_by('published_date')
-
+def tag_list(request,tag_name=None):
+    posts = Question.objects.last_questions()
     return render(request, 'askans/tag_list.html', {'posts': posts})
-################################доделать#####################################
+################################доделать############################
 def login(request):
     return render(request, 'askans/login.html')
 
