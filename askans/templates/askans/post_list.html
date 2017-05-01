@@ -32,7 +32,8 @@
                         <br>
 <!--                          lead это выделенный параграф -->
 {#                        <p class="lead" style="text-decoration: underline;"><a href="/question/{{ q.id }}">{{ q.title }}</a></p>#}
-                      <p class="lead" style="text-decoration: underline;"><a href={% url 'question' id=q.id %}>{{ q.title }}</a></p>
+{#                      <p class="lead" style="text-decoration: underline;"><a href={% url 'question' id=q.id %}>{{ q.title }}</a></p>#}
+                       <p class="lead" style="text-decoration: underline;"><a href="{{ q.get_absolute_url }}">{{ q.title }}</a></p>
                         <p class="preview-q">{{ q.text|linebreaksbr|truncatewords:"30" }}</p>
                         <a href="#">Ответы <span class="badge">{{ q.answer_set.count }}</span></a>
                           Tags: &nbsp;

@@ -2,7 +2,7 @@ from django.db import models
 from django.utils import timezone #подключаем часовой пояс
 from django.contrib.auth.models import User
 from django.contrib import admin #для отображения в admin
-
+from django.core.urlresolvers import reverse
 # Create your models here.
 
 class Person(models.Model):
@@ -36,6 +36,7 @@ class QuestionManager(models.Manager):
 
 class Tag(models.Model):
     name = models.CharField(max_length=20, unique=True)
+
     def __str__(self):
         return self.name
 
@@ -48,6 +49,14 @@ class Question(models.Model):
     rating = models.IntegerField(default=0)
 
     objects = QuestionManager()
+
+    # def get_url(self):
+
+    # def get_absolute_url(self):
+    #     return reverse('askans.views.question', args=[str(self.id)])
+
+    def get_absolute_url(self):
+        return reverse('question', kwargs={'id': self.id})
 
     def __str__(self):  # метод, возврщющий строку заголовка
         return self.title
