@@ -72,7 +72,26 @@ def tag_list(request,tag_name=None):
     return render(request, 'askans/tag_list.html', {'posts': posts})
 ################################доделать############################
 def login(request):
-    return render(request, 'askans/login.html')
+
+    if request.method == 'POST':
+        login = request.POST.get('login')
+        password = request.POST.get('password')
+        url = request.POST.get('continue','/')
+        sessid = do_login(login, password)
+        if sessid:
+            response = HttpResponseRedirect(url)
+            import datetime
+            from datetime import timedelta
+            response.set_cookie('sessid', sessid,
+                                domain='.askans.ru',
+                                httponly=True
+                                )
+            return response
+        else:
+            error = u'Неверный логин/пароль'
+        return render(request, login, {'error': error})
+
+    # return render(request, 'askans/login.html')
 
 def signup(request):
     return render(request, 'askans/signup.html')
