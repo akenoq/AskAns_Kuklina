@@ -75,16 +75,26 @@
 <!--                Правая часть-->
                 <ul class="nav navbar-nav navbar-right">
 <!--              <li class="active"><a href="https://getbootstrap.com/examples/navbar/">Default <span class="sr-only">(current)</span></a></li>-->
+
+{% if user.is_authenticated %}
               <li>
                   <div class="nav navbar-right">
                     <div class="navbar-text">
+
                         <img src="{% static 'pic/guest.png' %}" class="avatar">
-                        <a href="#">Username</a>
+{#                        <img src="{{user.person.avatar.url}}" class="avatar">#}
+
+                        <a href="#">{{ user.username }}</a>
                     </div>
-                </div>                    
+                </div>
+
               </li>
               <li><a href="#">Настройки</a></li>
-              <li><a href={% url 'signup' %}>Выйти</a></li>
+              <li><a href="{% url 'logout' %}?next={{request.path|urlencode}}">Выйти</a></li>
+{% else %}
+			<li><a href="{% url 'signup' %}">Sign up</a></li>
+            <li><a href="{% url 'login' %}?next={{request.path|urlencode}}">Log In</a></li>
+{% endif %}
             </ul>
           </div><!--/.nav-collapse -->
         </div><!--/.container-fluid -->

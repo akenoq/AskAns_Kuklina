@@ -1,4 +1,5 @@
 #подключаем определение времени
+from django.contrib.auth import authenticate
 from django.utils import timezone
 #пагинатор
 from django.core.paginator import Paginator, EmptyPage, PageNotAnInteger
@@ -6,10 +7,17 @@ from django.core.paginator import Paginator, EmptyPage, PageNotAnInteger
 from django.shortcuts import render, get_object_or_404
 from django.http import Http404
 #включаем модли определенные в соседнем (".") файле models.py
+from django.views import View
+
+from askans import forms
+from askans.forms import LoginForm, SignUpForm
 from .models import Question, Answer
+from django.shortcuts import redirect
+from django.contrib import auth
 
 from django.urls import reverse
-from django.http import HttpResponseRedirect
+
+from django.http import HttpResponse, JsonResponse
 
 
 def paginate(objects_list, request):
@@ -73,31 +81,92 @@ def tag_list(request,tag_name=None):
 ################################доделать############################
 def login(request):
 
-    if request.method == 'POST':
-        login = request.POST.get('login')
-        password = request.POST.get('password')
-        url = request.POST.get('continue','/')
-        sessid = do_login(login, password)
-        if sessid:
-            response = HttpResponseRedirect(url)
-            import datetime
-            from datetime import timedelta
-            response.set_cookie('sessid', sessid,
-                                domain='.askans.ru',
-                                httponly=True
-                                )
-            return response
-        else:
-            error = u'Неверный логин/пароль'
-        return render(request, login, {'error': error})
+    # if request.method == 'POST':
+    #     login = request.POST.get('login')
+    #     password = request.POST.get('password')
+    #     url = request.POST.get('continue','/')
+    #     sessid = do_login(login, password)
+    #     if sessid:
+    #         response = HttpResponseRedirect(url)
+    #         import datetime
+    #         from datetime import timedelta
+    #         response.set_cookie('sessid', sessid,
+    #                             domain='.askans.ru',
+    #                             httponly=True
+    #                             )
+    #         return response
+    #     else:
+    #         error = u'Неверный логин/пароль'
+    #     return render(request, login, {'error': error})
 
-    # return render(request, 'askans/login.html')
+    user = request.user
+    if user.is_authenticated():
+        print('User is_authenticated')
+        print(user.username)
+        return redirect('post_list')
+
+    next_page = request.GET.get('next')
+    if next_page is None:
+        next_page = 'post_list'
+
+    if request.method == 'POST':
+        form = LoginForm(request.POST)
+        if form.is_valid():
+            auth.login(request, form.user)
+            print(form.user.username)
+            return redirect(next_page) #возврат на предыдущую страницу
+    else:
+        form = forms.LoginForm()
+
+    return render(request, 'askans/login.html', {'form': form})
+
 
 def signup(request):
-    return render(request, 'askans/signup.html')
+    user = request.user
 
-def ask (request):
+    if user.is_authenticated():
+        return redirect('post_list')
+
+    if request.method == 'POST':
+        form = SignUpForm(request.POST, request.FILES)
+        if form.is_valid():
+            form.save()
+            user = auth.authenticate(username=form.cleaned_data['username'],password=form.cleaned_data['password'])
+            auth.login(request, user)
+
+            ####################
+            # username = request.POST['username']
+            # password = request.POST['password']
+            # u = authenticate(request, username=username, password=password)
+            # auth.login(request, u)
+            ####################
+
+            return redirect('post_list')
+    else:
+        form = forms.SignUpForm()
+
+    return render(request, 'askans/signup.html', {
+        'form': form,
+    })
+
+def ask(request):
     return render(request, 'askans/ask.html')
 #####################################################################
 def index_list(request):
     return render(request, 'askans/index_list.html')
+
+def logout(request):
+
+    print(request.get_host())
+    auth.logout(request)
+    next_page = request.GET.get('next')
+    if next_page:
+        return redirect(next_page)
+    else:
+        return redirect('login')
+
+
+
+            # class UserFormView(View):
+#     form_class = UserForm
+#     return render()

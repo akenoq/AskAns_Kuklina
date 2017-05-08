@@ -6,18 +6,31 @@
 
 <h3>Log In</h3>
 
-              <div id="err_box" style="color: #FF0000;"></div>
+              <div id="err_box" style="color: #FF0000;"> {{ form.non_field_errors }} </div>
 
-              <form style="margin-left:10px;">
-                  Login <br><input type="text" class="edit" id="t1" placeholder="login..." maxlength="120" style="width: 300px;" title = "Input title here">
+              <form style="margin-left:10px;" method="POST" >
+              {% csrf_token %}
+
+{#               {{ form.as_p }}#}
+
+                  Login <br>
+{#                  <input type="text" class="edit" id="t1" placeholder="login..." maxlength="120" style="width: 300px;" title = "Input title here">#}
+                  <log id="t1">{{ form.username }}</log>
                   <br>
                   <br>
-                  Password <br><input type="password" class="edit" id="t2" placeholder="password..." maxlength="120" style="width: 300px;" title = "Input tags here">
+                  Password <br>
+{#                  <input type="password" class="edit" id="t2" placeholder="password..." maxlength="120" style="width: 300px;" title = "Input tags here">#}
+                  <pas id="t2">{{ form.password }}</pas>
                   <br>
 <!--                  type="submit" -->
                   <br>
-                  <button type="button" class="btn btn-primary" id="login" onclick="fControlLogPas()">Log In!</button>
+
+                  <button type="submit" class="btn btn-primary" id="login" onclick="fControlLogPas()">Log In!</button>
+
               </form>
+
+
+
           <script>
                   function normChar(c)
                   {

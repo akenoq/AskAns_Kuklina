@@ -44,6 +44,8 @@ urlpatterns = [
 
     url(r'^ask/$', views.ask, name='ask'),
 
+    url(r'^logout/$', views.logout, name='logout'),
+
     #############################не выходило##################################
 
 #???	url(r'^tag/(?P<tag>[0-9]+)/$') ??
