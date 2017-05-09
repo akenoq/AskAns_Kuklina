@@ -1,7 +1,8 @@
 from django.contrib.auth.models import User
 from django import forms
 from django.contrib.auth import authenticate
-from askans.models import Question, User, Person
+from askans.models import Question, User, Person, Tag
+from askans.my import normalString
 
 
 # class UserForm(forms.ModelForm): #модельформа, прописываем поля, есть таблица соответствия полей подлей и форм => form.save()
@@ -16,12 +17,14 @@ from askans.models import Question, User, Person
 
 class LoginForm(forms.Form):
     username = forms.CharField(widget=forms.TextInput(attrs={
-        'placeholder': 'Login'
-    }),required='True')
+        'placeholder': 'Login',
+        'id': 't1'
+    }), required='True')
 
     password = forms.CharField(widget=forms.PasswordInput(attrs={
         'class': 'form-control',
-        'placeholder': 'Password'
+        'placeholder': 'Password',
+        'id': 't2'
     }),required='True')
 
     def clean(self):
@@ -58,6 +61,8 @@ class SignUpForm(forms.Form):
         username = self.cleaned_data['username']
         if User.objects.filter(username=username):
             raise forms.ValidationError('Login is already exists!')
+        if normalString(username) == False:
+            raise forms.ValidationError('Prohibited char!')
         return username
 
     def clean_repeat_password(self):
@@ -68,6 +73,8 @@ class SignUpForm(forms.Form):
 
     def clean_email(self):
         email = self.cleaned_data['email']
+        # if not email
+        #     raise forms.ValidationError('Not email format')
         if User.objects.filter(email=email):
             raise forms.ValidationError('Email is already exists!')
         return email
@@ -84,3 +91,30 @@ class SignUpForm(forms.Form):
         else:
             profile = Person(user=user)
             profile.save()
+
+
+class AskForm(forms.Form):
+    title = forms.CharField(widget=forms.TextInput(attrs={'placeholder': 'Enter the title here'}))
+    text = forms.CharField(widget=forms.Textarea(attrs={'placeholder': 'Enter your question here', 'rows': 20}))
+    tags = forms.CharField(widget=forms.TextInput(attrs={'placeholder': 'Enter tags separated by comma'}))
+
+    def save(self, user_id):
+        data = self.cleaned_data
+        profile_id = User.objects.get(id=user_id).person.id
+        question = Question(title=data['title'], text=data['text'], author_id=profile_id)
+        question.save()
+        tags = self.cleaned_data['tags'].split(',')
+        for new_tag in tags:
+            if new_tag[0] == ' ':
+                new_tag = new_tag[1:]
+            tag = Tag.objects.filter(name=new_tag)
+            if len(tag) == 0:
+                tag = Tag(name=new_tag)
+                tag.save()
+            else:
+                tag = tag[0]
+
+            tag.save()
+            question.tags.add(tag)
+        question.save()
+        return question

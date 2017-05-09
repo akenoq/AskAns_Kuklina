@@ -131,7 +131,7 @@ def signup(request):
         form = SignUpForm(request.POST, request.FILES)
         if form.is_valid():
             form.save()
-            user = auth.authenticate(username=form.cleaned_data['username'],password=form.cleaned_data['password'])
+            user = auth.authenticate(username=form.cleaned_data['username'], password=form.cleaned_data['password'])
             auth.login(request, user)
 
             ####################
@@ -150,7 +150,19 @@ def signup(request):
     })
 
 def ask(request):
-    return render(request, 'askans/ask.html')
+    user = request.user
+    if not user.is_authenticated():
+        return redirect('login')
+    if request.method == 'POST':
+        form = forms.AskForm(request.POST)
+        if form.is_valid():
+            question = form.save(user.id)
+            return redirect(question.get_absolute_url())
+    else:
+        form = forms.AskForm()
+    return render(request, 'askans/ask.html', {'form': form,})
+
+
 #####################################################################
 def index_list(request):
     return render(request, 'askans/index_list.html')
@@ -167,6 +179,6 @@ def logout(request):
 
 
 
-            # class UserFormView(View):
+#     class UserFormView(View):
 #     form_class = UserForm
 #     return render()

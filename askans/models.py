@@ -50,11 +50,6 @@ class Question(models.Model):
 
     objects = QuestionManager()
 
-    # def get_url(self):
-
-    # def get_absolute_url(self):
-    #     return reverse('askans.views.question', args=[str(self.id)])
-
     def get_absolute_url(self):
         return reverse('question', kwargs={'id': self.id})
 

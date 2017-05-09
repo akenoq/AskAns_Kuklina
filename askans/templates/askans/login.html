@@ -5,8 +5,8 @@
 {% block main %}
 
 <h3>Log In</h3>
-
-              <div id="err_box" style="color: #FF0000;"> {{ form.non_field_errors }} </div>
+              <div id="err_box" style="color: #FF0000;"></div>
+              <div id="err_box_serv" style="color: #FF0000;"> {{ form.non_field_errors }} </div>
 
               <form style="margin-left:10px;" method="POST" >
               {% csrf_token %}
@@ -15,12 +15,12 @@
 
                   Login <br>
 {#                  <input type="text" class="edit" id="t1" placeholder="login..." maxlength="120" style="width: 300px;" title = "Input title here">#}
-                  <log id="t1">{{ form.username }}</log>
+                  {{ form.username }}
                   <br>
                   <br>
                   Password <br>
 {#                  <input type="password" class="edit" id="t2" placeholder="password..." maxlength="120" style="width: 300px;" title = "Input tags here">#}
-                  <pas id="t2">{{ form.password }}</pas>
+                  {{ form.password }}
                   <br>
 <!--                  type="submit" -->
                   <br>

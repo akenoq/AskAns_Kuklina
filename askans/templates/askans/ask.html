@@ -12,18 +12,23 @@
 {% block main %}
 <!-- титульник из моделей -->
 <h3>New Question</h3>
-	<form style="margin-left:10px;">
-                  Title <br><input type="text" class="edit" id="t1" placeholder="text..." maxlength="120" style="width: 700px;" title = "Input title here">
+
+	<form style="margin-left:10px;" method="POST">
+                {% csrf_token %}
+                  Title <br> {{ form.title }}
+{#        <input type="text" class="edit" id="t1" placeholder="text..." maxlength="120" style="width: 700px;" title = "Input title here">#}
                   <br>
                   <br>
-                  Text <br><textarea class="edit" id="t2" rows="7" placeholder="text..." maxlength="1200" style="width: 700px;" title = "Input text here"></textarea>
+                  Text <br> {{ form.text }}
+{#        <textarea class="edit" id="t2" rows="7" placeholder="text..." maxlength="1200" style="width: 700px;" title = "Input text here"></textarea>#}
                   <br>
                   <br>
-                  Tags <br><input type="text" class="edit" id="t3" placeholder="text..." maxlength="120" style="width: 700px;" title = "Input tags here">
+                  Tags <br> {{ form.tags }}
+{#        <input type="text" class="edit" id="t3" placeholder="text..." maxlength="120" style="width: 700px;" title = "Input tags here">#}
                   <br>
 <!--                  type="submit" -->
                   <br>
-                  <button type="button" class="btn btn-primary" id="ask" onclick="fControlText()">Ask!</button>
+                  <button type="submit" class="btn btn-primary" id="ask" onclick="fControlText()">Ask!</button>
               </form>
 
           <script>
@@ -33,7 +38,7 @@
                   let s2 = document.getElementById('t2').value + "";
                   let s3 = document.getElementById('t3').value + "";
 
-                  if (s1 == "" || s2 == "" || s3 == "") alert("Emty text!")
+                  if (s1 === "" || s2 === "" || s3 === "") alert("Emty text!")
               }
           </script>
 {% endblock %}

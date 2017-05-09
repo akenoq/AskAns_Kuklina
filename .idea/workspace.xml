@@ -2,15 +2,13 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="c99807a5-4af6-4f8a-b4d1-06a9e41578f2" name="Default" comment="">
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/askans/my.py" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/db.sqlite3" afterPath="$PROJECT_DIR$/db.sqlite3" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/misc.xml" afterPath="$PROJECT_DIR$/.idea/misc.xml" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/aaa/urls.py" afterPath="$PROJECT_DIR$/aaa/urls.py" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/askans/forms.py" afterPath="$PROJECT_DIR$/askans/forms.py" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/askans/templates/askans/base.html" afterPath="$PROJECT_DIR$/askans/templates/askans/base.html" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/askans/models.py" afterPath="$PROJECT_DIR$/askans/models.py" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/askans/my.py" afterPath="$PROJECT_DIR$/askans/my.py" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/askans/templates/askans/ask.html" afterPath="$PROJECT_DIR$/askans/templates/askans/ask.html" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/askans/templates/askans/login.html" afterPath="$PROJECT_DIR$/askans/templates/askans/login.html" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/askans/templates/askans/signup.html" afterPath="$PROJECT_DIR$/askans/templates/askans/signup.html" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/askans/views.py" afterPath="$PROJECT_DIR$/askans/views.py" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
@@ -38,23 +36,11 @@
   </component>
   <component name="FileEditorManager">
     <leaf SIDE_TABS_SIZE_LIMIT_KEY="300">
-      <file leaf-file-name="urls.py" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/aaa/urls.py">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="325">
-              <caret line="46" column="48" lean-forward="false" selection-start-line="46" selection-start-column="48" selection-end-line="46" selection-end-column="48" />
-              <folding>
-                <element signature="e#637#678#0" expanded="true" />
-              </folding>
-            </state>
-          </provider>
-        </entry>
-      </file>
       <file leaf-file-name="models.py" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/askans/models.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="270">
-              <caret line="18" column="27" lean-forward="true" selection-start-line="18" selection-start-column="27" selection-end-line="18" selection-end-column="27" />
+            <state relative-caret-position="206">
+              <caret line="48" column="5" lean-forward="true" selection-start-line="48" selection-start-column="5" selection-end-line="48" selection-end-column="5" />
               <folding>
                 <element signature="e#0#28#0" expanded="true" />
               </folding>
@@ -65,32 +51,33 @@
       <file leaf-file-name="login.html" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/askans/templates/askans/login.html">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="255">
-              <caret line="17" column="56" lean-forward="false" selection-start-line="17" selection-start-column="56" selection-end-line="17" selection-end-column="56" />
+            <state relative-caret-position="105">
+              <caret line="7" column="56" lean-forward="false" selection-start-line="7" selection-start-column="56" selection-end-line="7" selection-end-column="56" />
               <folding>
-                <element signature="e#141#164#0#HTML" expanded="true" />
-                <marker date="1494271880080" expanded="false" signature="467:480" ph="..." />
-                <marker date="1494271880080" expanded="true" signature="760:773" ph="..." />
+                <element signature="e#140#163#0#HTML" expanded="true" />
+                <element signature="e#208#231#0#HTML" expanded="true" />
+                <marker date="1494276520087" expanded="false" signature="534:547" ph="..." />
+                <marker date="1494276520087" expanded="true" signature="808:821" ph="..." />
               </folding>
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="my.css" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/askans/static/p1_files/my.css">
+      <file leaf-file-name="question.html" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/askans/templates/askans/question.html">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="555">
-              <caret line="37" column="24" lean-forward="false" selection-start-line="37" selection-start-column="24" selection-end-line="37" selection-end-column="24" />
+            <state relative-caret-position="45">
+              <caret line="3" column="0" lean-forward="false" selection-start-line="3" selection-start-column="0" selection-end-line="3" selection-end-column="0" />
               <folding />
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="signup.html" pinned="false" current-in-tab="true">
+      <file leaf-file-name="signup.html" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/askans/templates/askans/signup.html">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="135">
-              <caret line="9" column="49" lean-forward="true" selection-start-line="9" selection-start-column="49" selection-end-line="9" selection-end-column="49" />
+            <state relative-caret-position="195">
+              <caret line="13" column="20" lean-forward="true" selection-start-line="8" selection-start-column="14" selection-end-line="13" selection-end-column="20" />
               <folding>
                 <element signature="e#148#171#0#HTML" expanded="true" />
                 <element signature="e#402#427#0#HTML" expanded="true" />
@@ -116,20 +103,46 @@
       <file leaf-file-name="forms.py" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/askans/forms.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="266">
-              <caret line="69" column="42" lean-forward="true" selection-start-line="69" selection-start-column="42" selection-end-line="69" selection-end-column="42" />
+            <state relative-caret-position="3">
+              <caret line="64" column="57" lean-forward="false" selection-start-line="64" selection-start-column="57" selection-end-line="64" selection-end-column="57" />
               <folding>
                 <element signature="e#0#43#0" expanded="true" />
+                <marker date="1494288192587" expanded="true" signature="2444:2518" ph="..." />
               </folding>
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="tag_list.html" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/askans/templates/askans/tag_list.html">
+      <file leaf-file-name="ask.html" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/askans/templates/askans/ask.html">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="240">
-              <caret line="16" column="31" lean-forward="false" selection-start-line="16" selection-start-column="31" selection-end-line="16" selection-end-column="31" />
+            <state relative-caret-position="144">
+              <caret line="17" column="45" lean-forward="true" selection-start-line="17" selection-start-column="45" selection-end-line="17" selection-end-column="45" />
+              <folding>
+                <element signature="n#style#0;n#form#0;n#!!top" expanded="true" />
+                <marker date="1494284147730" expanded="false" signature="511:524" ph="..." />
+                <marker date="1494284147730" expanded="false" signature="742:755" ph="..." />
+                <marker date="1494284147730" expanded="false" signature="982:995" ph="..." />
+              </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="my.py" pinned="false" current-in-tab="true">
+        <entry file="file://$PROJECT_DIR$/askans/my.py">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="225">
+              <caret line="15" column="31" lean-forward="true" selection-start-line="15" selection-start-column="31" selection-end-line="15" selection-end-column="31" />
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="hot_list.html" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/askans/templates/askans/hot_list.html">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="513">
+              <caret line="37" column="30" lean-forward="false" selection-start-line="37" selection-start-column="0" selection-end-line="38" selection-end-column="0" />
               <folding />
             </state>
           </provider>
@@ -138,12 +151,12 @@
       <file leaf-file-name="views.py" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/askans/views.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="115">
-              <caret line="133" column="115" lean-forward="true" selection-start-line="133" selection-start-column="115" selection-end-line="133" selection-end-column="115" />
+            <state relative-caret-position="265">
+              <caret line="162" column="4" lean-forward="false" selection-start-line="162" selection-start-column="4" selection-end-line="162" selection-end-column="4" />
               <folding>
                 <element signature="e#32#76#0" expanded="true" />
-                <marker date="1494273263481" expanded="true" signature="1243:1558" ph="..." />
-                <marker date="1494273263481" expanded="true" signature="4646:4849" ph="..." />
+                <marker date="1494285363961" expanded="true" signature="1243:1558" ph="..." />
+                <marker date="1494285363961" expanded="true" signature="4647:4850" ph="..." />
               </folding>
             </state>
           </provider>
@@ -175,8 +188,8 @@
       <find>save</find>
       <find>post_</find>
       <find>err_</find>
-      <find>lo</find>
       <find>fcont</find>
+      <find>lo</find>
     </findStrings>
   </component>
   <component name="Git.Settings">
@@ -194,17 +207,18 @@
         <option value="$PROJECT_DIR$/askans/templates/askans/question.html" />
         <option value="$PROJECT_DIR$/askans/templates/askans/hot_list.html" />
         <option value="$PROJECT_DIR$/askans/templates/askans/post_list.html" />
-        <option value="$PROJECT_DIR$/askans/models.py" />
         <option value="$PROJECT_DIR$/askans/form.py" />
         <option value="$PROJECT_DIR$/askans/urls.py" />
-        <option value="$PROJECT_DIR$/askans/my.py" />
         <option value="$PROJECT_DIR$/askans/lesson_4.py" />
-        <option value="$PROJECT_DIR$/askans/forms.py" />
         <option value="$PROJECT_DIR$/aaa/urls.py" />
         <option value="$PROJECT_DIR$/askans/templates/askans/base.html" />
-        <option value="$PROJECT_DIR$/askans/views.py" />
-        <option value="$PROJECT_DIR$/askans/templates/askans/login.html" />
         <option value="$PROJECT_DIR$/askans/templates/askans/signup.html" />
+        <option value="$PROJECT_DIR$/askans/templates/askans/login.html" />
+        <option value="$PROJECT_DIR$/askans/models.py" />
+        <option value="$PROJECT_DIR$/askans/templates/askans/ask.html" />
+        <option value="$PROJECT_DIR$/askans/views.py" />
+        <option value="$PROJECT_DIR$/askans/forms.py" />
+        <option value="$PROJECT_DIR$/askans/my.py" />
       </list>
     </option>
   </component>
@@ -245,6 +259,20 @@
             </PATH_ELEMENT>
             <PATH_ELEMENT>
               <option name="myItemId" value="aaa" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+          </PATH>
+          <PATH>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="aaa" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="aaa" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="static" />
               <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
             </PATH_ELEMENT>
           </PATH>
@@ -594,7 +622,7 @@
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
-      <option name="time" value="2" />
+      <option name="time" value="4" />
     </breakpoint-manager>
     <watches-manager />
   </component>
@@ -770,13 +798,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/askans/templates/askans/ask.html">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="210">
-          <caret line="14" column="15" lean-forward="false" selection-start-line="14" selection-start-column="15" selection-end-line="14" selection-end-column="15" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/askans/apps.py">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="0">
@@ -809,20 +830,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="19590">
           <caret line="1331" column="4" lean-forward="false" selection-start-line="1331" selection-start-column="4" selection-end-line="1331" selection-end-column="4" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/askans/templates/askans/hot_list.html">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="555">
-          <caret line="37" column="30" lean-forward="false" selection-start-line="37" selection-start-column="0" selection-end-line="38" selection-end-column="0" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/askans/templates/askans/question.html">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="45">
-          <caret line="3" column="0" lean-forward="false" selection-start-line="3" selection-start-column="0" selection-end-line="3" selection-end-column="0" />
         </state>
       </provider>
     </entry>
@@ -861,24 +868,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/askans/my.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="15">
-          <caret line="1" column="12" lean-forward="false" selection-start-line="1" selection-start-column="12" selection-end-line="1" selection-end-column="12" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/askans/models.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="270">
-          <caret line="18" column="27" lean-forward="true" selection-start-line="18" selection-start-column="27" selection-end-line="18" selection-end-column="27" />
-          <folding>
-            <element signature="e#0#28#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/askans/templates/askans/tag_list.html">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="240">
@@ -897,24 +886,38 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/askans/views.py">
+    <entry file="file://$PROJECT_DIR$/askans/templates/askans/hot_list.html">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="115">
-          <caret line="133" column="115" lean-forward="true" selection-start-line="133" selection-start-column="115" selection-end-line="133" selection-end-column="115" />
+        <state relative-caret-position="513">
+          <caret line="37" column="30" lean-forward="false" selection-start-line="37" selection-start-column="0" selection-end-line="38" selection-end-column="0" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/askans/templates/askans/signup.html">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="195">
+          <caret line="13" column="20" lean-forward="true" selection-start-line="8" selection-start-column="14" selection-end-line="13" selection-end-column="20" />
           <folding>
-            <element signature="e#32#76#0" expanded="true" />
-            <marker date="1494273263481" expanded="true" signature="1243:1558" ph="..." />
-            <marker date="1494273263481" expanded="true" signature="4646:4849" ph="..." />
+            <element signature="e#148#171#0#HTML" expanded="true" />
+            <element signature="e#402#427#0#HTML" expanded="true" />
+            <marker date="1494275216242" expanded="false" signature="646:659" ph="..." />
+            <marker date="1494275216242" expanded="false" signature="1190:1203" ph="..." />
+            <marker date="1494275216242" expanded="false" signature="1479:1492" ph="..." />
+            <marker date="1494275216242" expanded="false" signature="1777:1790" ph="..." />
           </folding>
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/askans/forms.py">
+    <entry file="file://$PROJECT_DIR$/askans/templates/askans/login.html">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="266">
-          <caret line="69" column="42" lean-forward="true" selection-start-line="69" selection-start-column="42" selection-end-line="69" selection-end-column="42" />
+        <state relative-caret-position="105">
+          <caret line="7" column="56" lean-forward="false" selection-start-line="7" selection-start-column="56" selection-end-line="7" selection-end-column="56" />
           <folding>
-            <element signature="e#0#43#0" expanded="true" />
+            <element signature="e#140#163#0#HTML" expanded="true" />
+            <element signature="e#208#231#0#HTML" expanded="true" />
+            <marker date="1494276520087" expanded="false" signature="534:547" ph="..." />
+            <marker date="1494276520087" expanded="true" signature="808:821" ph="..." />
           </folding>
         </state>
       </provider>
@@ -927,30 +930,65 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/askans/templates/askans/login.html">
+    <entry file="file://$PROJECT_DIR$/askans/templates/askans/question.html">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="255">
-          <caret line="17" column="56" lean-forward="false" selection-start-line="17" selection-start-column="56" selection-end-line="17" selection-end-column="56" />
+        <state relative-caret-position="45">
+          <caret line="3" column="0" lean-forward="false" selection-start-line="3" selection-start-column="0" selection-end-line="3" selection-end-column="0" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/askans/templates/askans/ask.html">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="144">
+          <caret line="17" column="45" lean-forward="true" selection-start-line="17" selection-start-column="45" selection-end-line="17" selection-end-column="45" />
           <folding>
-            <element signature="e#141#164#0#HTML" expanded="true" />
-            <marker date="1494271880080" expanded="false" signature="467:480" ph="..." />
-            <marker date="1494271880080" expanded="true" signature="760:773" ph="..." />
+            <element signature="n#style#0;n#form#0;n#!!top" expanded="true" />
+            <marker date="1494284147730" expanded="false" signature="511:524" ph="..." />
+            <marker date="1494284147730" expanded="false" signature="742:755" ph="..." />
+            <marker date="1494284147730" expanded="false" signature="982:995" ph="..." />
           </folding>
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/askans/templates/askans/signup.html">
+    <entry file="file://$PROJECT_DIR$/askans/models.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="135">
-          <caret line="9" column="49" lean-forward="true" selection-start-line="9" selection-start-column="49" selection-end-line="9" selection-end-column="49" />
+        <state relative-caret-position="206">
+          <caret line="48" column="5" lean-forward="true" selection-start-line="48" selection-start-column="5" selection-end-line="48" selection-end-column="5" />
           <folding>
-            <element signature="e#148#171#0#HTML" expanded="true" />
-            <element signature="e#402#427#0#HTML" expanded="true" />
-            <marker date="1494275216242" expanded="false" signature="646:659" ph="..." />
-            <marker date="1494275216242" expanded="false" signature="1190:1203" ph="..." />
-            <marker date="1494275216242" expanded="false" signature="1479:1492" ph="..." />
-            <marker date="1494275216242" expanded="false" signature="1777:1790" ph="..." />
+            <element signature="e#0#28#0" expanded="true" />
           </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/askans/views.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="265">
+          <caret line="162" column="4" lean-forward="false" selection-start-line="162" selection-start-column="4" selection-end-line="162" selection-end-column="4" />
+          <folding>
+            <element signature="e#32#76#0" expanded="true" />
+            <marker date="1494285363961" expanded="true" signature="1243:1558" ph="..." />
+            <marker date="1494285363961" expanded="true" signature="4647:4850" ph="..." />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/askans/forms.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="3">
+          <caret line="64" column="57" lean-forward="false" selection-start-line="64" selection-start-column="57" selection-end-line="64" selection-end-column="57" />
+          <folding>
+            <element signature="e#0#43#0" expanded="true" />
+            <marker date="1494288192587" expanded="true" signature="2444:2518" ph="..." />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/askans/my.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="225">
+          <caret line="15" column="31" lean-forward="true" selection-start-line="15" selection-start-column="31" selection-end-line="15" selection-end-column="31" />
+          <folding />
         </state>
       </provider>
     </entry>
