@@ -37,7 +37,9 @@ INSTALLED_APPS = [
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
-    'askans'
+    'askans',
+    # custom
+    'channels',
 ]
 
 MIDDLEWARE = [
@@ -120,7 +122,16 @@ USE_TZ = True
 
 STATIC_URL = '/static/'
 
+# STATICFILES_DIRS = [
+#     os.path.join(BASE_DIR, "static"),
+#     '/var/www/static/',
+# ]
+#
+
 #ДОБАВЛЕНО
 #информация о расположении статических файлов
 
 STATIC_ROOT = os.path.join(BASE_DIR, 'static')
+
+MEDIA_ROOT = os.path.join('uploads')
+MEDIA_URL = '/uploads/'

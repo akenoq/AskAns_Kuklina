@@ -138,18 +138,18 @@ class AnswerForm(forms.Form):
 
 
 class SettingsForm(forms.Form):
-    username = forms.CharField(widget=forms.TextInput(attrs={'class': 'form-control input-lg' })).disabled
+    # username = forms.CharField(widget=forms.TextInput(attrs={'class': 'form-control input-lg' })).disabled
 
-    email = forms.EmailField(widget=forms.EmailInput(attrs={ 'class': 'form-control input-lg' }))
+    email = forms.EmailField(widget=forms.EmailInput(attrs={ 'class': 'form-control input' }))
 
-    avatar = forms.ImageField(required=False, widget=forms.FileInput(attrs={ 'class': 'form-control input-lg' }))
+    avatar = forms.ImageField(required=False, widget=forms.FileInput(attrs={ 'class': 'form-control input' }))
 
-    def clean_username(self):
-        username = self.cleaned_data['username']
-        if self.fields['username'].has_changed(initial=self.initial['username'], data=username):
-            if User.objects.filter(username=username).exists():
-                raise forms.ValidationError('Login already exists!')
-        return username
+    # def clean_username(self):
+    #     username = self.cleaned_data['username']
+    #     if self.fields['username'].has_changed(initial=self.initial['username'], data=username):
+    #         if User.objects.filter(username=username).exists():
+    #             raise forms.ValidationError('Login already exists!')
+    #     return username
 
     def clean_email(self):
         email = self.cleaned_data['email']
@@ -162,7 +162,7 @@ class SettingsForm(forms.Form):
         data = self.cleaned_data
         profile_id = User.objects.get(id=user_id).person.id
         user = Person.objects.get(id = profile_id)
-        user.username = data['username']
+        # user.username = data['username']
         user.email = data['email']
         if data['avatar'] is not None:
             user.avatar = data['avatar']

@@ -14,7 +14,7 @@ class Person(models.Model):
 
     ####какие еще поля
     avatar = models.ImageField(
-        upload_to = './uploads/avatars/%Y/%m/%d/%H/',
+        upload_to = 'avatars/%Y/%m/%d/%H/',
         max_length = 100,
         default = 'ava.jpg'
     )
