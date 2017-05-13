@@ -46,6 +46,7 @@ urlpatterns = [
 
     url(r'^logout/$', views.logout, name='logout'),
 
+    url(r'^settings/$', views.settings, name='settings'),
     #############################не выходило##################################
 
 #???	url(r'^tag/(?P<tag>[0-9]+)/$') ??

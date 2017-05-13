@@ -11,10 +11,12 @@
 <div class="row question">
                       <div class="col-md-3">
                         <img src="{% static 'pic/guest.png' %}" class="img-thumbnail avatar-q">
+                        <div style="color: #3e8f3e"> &nbsp;&nbsp;&nbsp;{{ q.author }} </div>
                         <span class="label label-primary" style="margin-left: 10px; margin-bottom: 10px;"> {{ q.rating }} </span>
                         <span class="label label-danger" style="margin-left: 10px;"> - </span>
-                 &nbsp; <span class="label label-success" style="margin-left: -7px;"> +</span>
-                        <br><br>
+                 &nbsp;       <span class="label label-success" style="margin-left: -7px;"> +</span>
+                        <br>
+                        <br>
                       </div>
 <!-- RIGHT BOX -->
                       <div class="col-md-9">
@@ -29,7 +31,6 @@
                           {% endfor %}
                       {% endif%}
 
-
                       </div>
                   </div>
 
@@ -38,6 +39,7 @@
 <!-- ANSWER -->
 {% for a in page %}
               <div class="row answer">
+              <a name="ans_{{ a.id }}"></a>
                       <div class="col-md-3">
                         <img src="{% static 'pic/guest.png' %}" class="img-thumbnail avatar-a">
                         <span class="label label-primary" style="margin-left: 71px; margin-bottom: 10px;"> {{ a.rating }} </span>
@@ -58,6 +60,22 @@
 
 {% if  q.answer_set.count > 5 %}
     {% include "askans/paginator.html" %}
+{% endif %}
+
+{% if request.user.is_authenticated %}
+    <a name="answer-form"></a>
+    <form action="{{ request.get_full_path }}#answer-form" method="POST">
+                 {% csrf_token %}
+
+                    Answer
+                    <div style="margin: 10px">{{ form.text }}</div>
+                    <button type="submit" class="btn btn-success">Answer!</button>
+    </form>
+    {% else %}
+        <p>
+            Please,
+            <a href="{% url 'login' %}?next={{ request.get_full_path }}">login</a> to answer
+        </p>
 {% endif %}
 
 {% endblock %}

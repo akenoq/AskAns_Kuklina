@@ -1,0 +1,33 @@
+{% extends "askans/base.html" %}
+
+{% block title %} Settings {% endblock %}
+
+{% block main %}
+
+<h3>Settings</h3>
+
+              <div id="err_box" style="color: #FF0000;">
+{#                  {{ form.non_field_errors }}#}
+                  {{ form.username.errors }}
+                  {{ form.email.errors}}
+                  {{ form.repeat_password.errors}}
+              </div>
+
+              <form style="margin-left:10px;" enctype = "multipart/form-data" method="POST">
+                  {% csrf_token %}
+
+                  Login <br>
+                  {{ form.username }}
+                  <br>
+                  <br>
+                  Email <br>
+                  {{ form.email }}
+                  <br>
+                  <br>
+                  Upload avatar <br>
+                  {{ form.avatar }}
+                  <br>
+                  <button type="submit" class="btn btn-primary" id="Save">Save</button>
+              </form>
+
+{% endblock %}

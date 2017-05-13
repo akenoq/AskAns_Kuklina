@@ -1,7 +1,7 @@
 from django.contrib.auth.models import User
 from django import forms
 from django.contrib.auth import authenticate
-from askans.models import Question, User, Person, Tag
+from askans.models import Question, User, Person, Tag, Answer
 from askans.my import normalString
 
 
@@ -17,6 +17,7 @@ from askans.my import normalString
 
 class LoginForm(forms.Form):
     username = forms.CharField(widget=forms.TextInput(attrs={
+        'class': 'form-control',
         'placeholder': 'Login',
         'id': 't1'
     }), required='True')
@@ -25,7 +26,7 @@ class LoginForm(forms.Form):
         'class': 'form-control',
         'placeholder': 'Password',
         'id': 't2'
-    }),required='True')
+    }), required='True')
 
     def clean(self):
         username = self.cleaned_data['username']
@@ -39,18 +40,22 @@ class LoginForm(forms.Form):
 
 class SignUpForm(forms.Form):
     username = forms.CharField(widget=forms.TextInput(attrs={
+        'class': 'form-control',
         'placeholder': 'Login'
     }))
 
     email = forms.EmailField(widget=forms.EmailInput(attrs={
+        'class': 'form-control',
         'placeholder': 'E-mail'
     }))
 
     password = forms.CharField(widget=forms.PasswordInput(attrs={
+        'class': 'form-control',
         'placeholder': 'Password'
     }))
 
     repeat_password = forms.CharField(widget=forms.PasswordInput(attrs={
+        'class': 'form-control',
         'placeholder': 'Repeat password'
     }))
 
@@ -94,9 +99,9 @@ class SignUpForm(forms.Form):
 
 
 class AskForm(forms.Form):
-    title = forms.CharField(widget=forms.TextInput(attrs={'placeholder': 'Enter the title here'}))
-    text = forms.CharField(widget=forms.Textarea(attrs={'placeholder': 'Enter your question here', 'rows': 20}))
-    tags = forms.CharField(widget=forms.TextInput(attrs={'placeholder': 'Enter tags separated by comma'}))
+    title = forms.CharField(widget=forms.TextInput(attrs={'class': 'form-control input-lg', 'placeholder': 'Enter the title here'}))
+    text = forms.CharField(widget=forms.Textarea(attrs={'class': 'form-control input-lg', 'placeholder': 'Enter your question here', 'rows': 20}))
+    tags = forms.CharField(widget=forms.TextInput(attrs={'class': 'form-control input-lg', 'placeholder': 'Enter tags separated by comma'}))
 
     def save(self, user_id):
         data = self.cleaned_data
@@ -118,3 +123,47 @@ class AskForm(forms.Form):
             question.tags.add(tag)
         question.save()
         return question
+
+
+class AnswerForm(forms.Form):
+    text = forms.CharField(widget=forms.Textarea(attrs={'class': 'form-control input-lg', 'placeholder': 'Enter your answer here', 'rows': 5, }))
+
+    def save(self, question_id, user_id):
+        data = self.cleaned_data
+        profile_id = User.objects.get(id=user_id).person.id
+        answer = Answer(text=data['text'], question_id=question_id, author_id=user_id)
+        print(answer.text)
+        print(answer.question.title)
+        answer.save()
+
+
+class SettingsForm(forms.Form):
+    username = forms.CharField(widget=forms.TextInput(attrs={'class': 'form-control input-lg' })).disabled
+
+    email = forms.EmailField(widget=forms.EmailInput(attrs={ 'class': 'form-control input-lg' }))
+
+    avatar = forms.ImageField(required=False, widget=forms.FileInput(attrs={ 'class': 'form-control input-lg' }))
+
+    def clean_username(self):
+        username = self.cleaned_data['username']
+        if self.fields['username'].has_changed(initial=self.initial['username'], data=username):
+            if User.objects.filter(username=username).exists():
+                raise forms.ValidationError('Login already exists!')
+        return username
+
+    def clean_email(self):
+        email = self.cleaned_data['email']
+        if self.fields['email'].has_changed(initial=self.initial['email'], data=email):
+            if User.objects.filter(email=email).exists():
+                raise forms.ValidationError('Email already exists!')
+        return email
+
+    def save(self, user_id):
+        data = self.cleaned_data
+        profile_id = User.objects.get(id=user_id).person.id
+        user = Person.objects.get(id = profile_id)
+        user.username = data['username']
+        user.email = data['email']
+        if data['avatar'] is not None:
+            user.avatar = data['avatar']
+        user.save()

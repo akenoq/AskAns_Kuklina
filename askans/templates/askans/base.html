@@ -50,7 +50,7 @@
 <!--            -->
 <!--            -->
 <!--     #hh - id, чтобы переопределить botstrap       -->
-            <a class="navbar-brand" href="#"><span>&nbsp;&nbsp;<img src="{% static 'pic/askans.png' %}" style="height: 43px; width: 43px; margin-top: -12px;"/>&nbsp;&nbsp;</span><b><span id="hh">AskKuklina</span></b></a>
+            <a class="navbar-brand" href="{% url 'post_list' %}"><span>&nbsp;&nbsp;<img src="{% static 'pic/askans.png' %}" style="height: 43px; width: 43px; margin-top: -12px;"/>&nbsp;&nbsp;</span><b><span id="hh">AskKuklina</span></b></a>
             
            </div>
           <div id="navbar" class="navbar-collapse collapse">
@@ -67,7 +67,8 @@
                   <button type="submit" class="btn btn-primary">Go!</button>
                 </form>     
                </li>
-               <li> <button type="button" class="btn btn-success" style="margin-top: 8px;">Ask!</button> </li>
+               <li><button type="button" class="btn btn-success" style="margin-top: 8px;" >Ask!</button></li>
+{#                onclick=location.href="{% url 'ask' %}"#}
             </ul>
                 
 <!--                
@@ -89,7 +90,7 @@
                 </div>
 
               </li>
-              <li><a href="#">Настройки</a></li>
+              <li><a href="{% url 'settings' %}">Настройки</a></li>
               <li><a href="{% url 'logout' %}?next={{request.path|urlencode}}">Выйти</a></li>
 {% else %}
 			<li><a href="{% url 'signup' %}">Sign up</a></li>

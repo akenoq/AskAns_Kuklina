@@ -1,4 +1,5 @@
 #подключаем определение времени
+import math
 from django.contrib.auth import authenticate
 from django.utils import timezone
 #пагинатор
@@ -10,7 +11,7 @@ from django.http import Http404
 from django.views import View
 
 from askans import forms
-from askans.forms import LoginForm, SignUpForm
+from askans.forms import LoginForm, SignUpForm, AnswerForm, SettingsForm
 from .models import Question, Answer
 from django.shortcuts import redirect
 from django.contrib import auth
@@ -68,11 +69,33 @@ def hot_list(request):
 #пока пробно с post моделью
 def question(request, id):
     q = get_object_or_404(Question, id=id) #QuerySet q, который пердаетм в шаблон
-    answers = Answer.objects.filter(question__id=id)
 
+    answers = Answer.objects.filter(question__id=id)  # __
     posts, page_range = paginate(answers, request)
 
-    return render(request, 'askans/question.html', {'q': q, 'page': posts, 'page_range': page_range})
+    user = request.user
+
+    if request.method == 'POST':
+        form = forms.AnswerForm(request.POST)
+        if form.is_valid():
+            # новый ответ в переменную, чтобы дальше найти совпадение в кверисете
+            # и вернуть id совпавшего ответа => он и является якорем
+            new_ans = form.save(id, user.id)
+            answers = Answer.objects.filter(question__id=id)
+            i = 1
+            for ans in answers:
+                if ans == new_ans:
+                    ans_id = ans.id
+                    break
+                i = i + 1
+            page = math.ceil(i / 5)  # определяем страницу
+            ans_id = None
+            paginator = Paginator(answers, 3)
+            return redirect('/question/{}?page={}#ans_{}'.format(id, page, ans_id))
+    else:
+        form = forms.AnswerForm()
+
+    return render(request, 'askans/question.html', {'q': q, 'page': posts, 'page_range': page_range, 'form': form})
 
 #с тэгами
 def tag_list(request,tag_name=None):
@@ -160,7 +183,7 @@ def ask(request):
             return redirect(question.get_absolute_url())
     else:
         form = forms.AskForm()
-    return render(request, 'askans/ask.html', {'form': form,})
+    return render(request, 'askans/ask.html', {'form': form})
 
 
 #####################################################################
@@ -177,6 +200,25 @@ def logout(request):
     else:
         return redirect('login')
 
+
+def settings(request):
+    user = request.user
+
+    if not user.is_authenticated():
+        return redirect('post_list')
+
+    data = {'username': user.username, 'email': user.email, } #данные юзера
+
+    if request.method == 'POST':
+        form = SettingsForm(request.POST, request.FILES, initial=data)
+        if form.is_valid():
+            form.save(user.id)
+    else:
+        form = forms.SignUpForm(initial= data)
+
+    return render(request, 'askans/settings.html', {
+        'form': form
+    })
 
 
 #     class UserFormView(View):

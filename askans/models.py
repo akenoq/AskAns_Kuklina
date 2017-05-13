@@ -25,7 +25,7 @@ class Person(models.Model):
 class QuestionManager(models.Manager):
 
     def hot_questions(self):
-        return self.order_by('rating')
+        return self.order_by('-rating')
 
     def last_questions(self):
         return self.order_by('published_date')
