@@ -21,8 +21,9 @@
                   <br>
                   Text <br> {{ form.text }}
 {#        <textarea class="edit" id="t2" rows="7" placeholder="text..." maxlength="1200" style="width: 700px;" title = "Input text here"></textarea>#}
-                  <br>
-                  <br>
+                  <br><br>
+        <div class="bg-danger">{{ form.tags.errors }}</div>
+
                   Tags <br> {{ form.tags }}
 {#        <input type="text" class="edit" id="t3" placeholder="text..." maxlength="120" style="width: 700px;" title = "Input tags here">#}
                   <br>

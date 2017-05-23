@@ -14,7 +14,16 @@
 {
     margin: 10px 10px 10px 10px;
     height: 150px;
-    width: 150px;  
+    width: 150px;
+}
+
+.avatar-qq
+{
+    margin-bottom: 10px;
+    height: 150px;
+    width: 150px;
+    border: solid 1px #e7e7e7;
+    border-radius: 3px 3px 3px 3px;
 }
 
 .question
@@ -23,9 +32,9 @@
     border-radius: 3px 3px 3px 3px;
     padding: 10 px;
     margin-top: 20px;
-    margin-bottom: 20px; 
+    margin-bottom: 20px;
     margin-right: 10px;
-    margin-left: 10px; 
+    margin-left: 10px;
 /*
     height: 200px;
     position: relative;
@@ -39,14 +48,14 @@
 
 .tags
 {
-    
-    
-    
+
+
+
 }
 
 .top-users
 {
-    
-    
-    
+
+
+
 }

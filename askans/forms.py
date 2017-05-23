@@ -100,20 +100,30 @@ class SignUpForm(forms.Form):
 
 class AskForm(forms.Form):
     title = forms.CharField(widget=forms.TextInput(attrs={'class': 'form-control input', 'placeholder': 'Enter the title here'}))
-    text = forms.CharField(widget=forms.Textarea(attrs={'class': 'form-control input', 'placeholder': 'Enter your question here', 'rows': 20}))
+    text = forms.CharField(widget=forms.Textarea(attrs={'class': 'form-control input', 'placeholder': 'Enter your question here', 'rows': 12}))
     tags = forms.CharField(widget=forms.TextInput(attrs={'class': 'form-control input', 'placeholder': 'Enter tags separated by comma'}))
+
+    def clean_tags(self):
+        tags = self.cleaned_data['tags'].split(',')
+        if len(tags) == 0:
+            raise forms.ValidationError('Input 1-3 tags!')
+        if len(tags) > 3:
+            raise forms.ValidationError('Input 1-3 tags!')
+        return tags
 
     def save(self, user_id):
         data = self.cleaned_data
         profile_id = User.objects.get(id=user_id).person.id
         question = Question(title=data['title'], text=data['text'], author_id=profile_id)
         question.save()
-        tags = self.cleaned_data['tags'].split(',')
+
+        tags = data['tags']
+
         for new_tag in tags:
             if new_tag[0] == ' ':
                 new_tag = new_tag[1:]
             tag = Tag.objects.filter(name=new_tag)
-            if len(tag) == 0:
+            if len(tag) == 0: #если тэга не существует
                 tag = Tag(name=new_tag)
                 tag.save()
             else:
@@ -122,6 +132,26 @@ class AskForm(forms.Form):
             tag.save()
             question.tags.add(tag)
         question.save()
+        # data = self.cleaned_data
+        # profile_id = User.objects.get(id=user_id).person.id
+        # question = Question(title=data['title'], text=data['text'], author_id=profile_id)
+        # question.save()
+        # tags = self.cleaned_data['tags'].split(',')
+        #
+        # for new_tag in tags:
+        #     if new_tag[0] == ' ':
+        #         new_tag = new_tag[1:]
+        #     tag = Tag.objects.filter(name=new_tag)
+        #     if len(tag) == 0:
+        #         tag = Tag(name=new_tag)
+        #         tag.save()
+        #     else:
+        #         tag = tag[0]
+        #
+        #     tag.save()
+        #     question.tags.add(tag)
+        # question.save()
+
         return question
 
 

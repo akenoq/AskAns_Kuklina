@@ -25,7 +25,10 @@
                   <br>
                   <br>
                   Upload avatar <br>
-                  <img src="{{request.user.person.avatar.url}}" class="avatar-q">
+                  <div>
+                      <img src="{{request.user.person.avatar.url}}" class="avatar-qq">
+                  </div>
+
                   {{ form.avatar }}
                   <br>
                   <button type="submit" class="btn btn-primary" id="Save">Save</button>
