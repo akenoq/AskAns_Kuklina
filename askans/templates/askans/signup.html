@@ -8,19 +8,22 @@
 
               <div id="err_box" style="color: #FF0000;">
 {#                  {{ form.non_field_errors }}#}
-                  {{ form.username.errors }}
-                  {{ form.email.errors}}
-                  {{ form.repeat_password.errors}}
+{#                  {{ form.username.errors }}#}
+{#                  {{ form.email.errors}}#}
+{#                  {{ form.repeat_password.errors}}#}
               </div>
 
               <form style="margin-left:10px;" enctype = "multipart/form-data" method="POST">
                   {% csrf_token %}
 
+                  <div class="bg-danger">{{ form.username.errors}}</div>
                   Login <br>
 {#                  <input type="text" class="edit" id="t1" placeholder="login..." maxlength="120" style="width: 300px;" title = "Input title here">#}
                   {{ form.username }}
                   <br>
                   <br>
+
+                  <div class="bg-danger">{{ form.email.errors}}</div>
                   Email <br>
                   {{ form.email }}
 {#                  <input type="text" class="edit" id="t2" placeholder="email@mail.ru" maxlength="120" style="width: 300px;" title = "Input you email here">#}
@@ -35,6 +38,8 @@
 {#                  <input type="password" class="edit" id="t4" placeholder="password..." maxlength="120" style="width: 300px;" title = "Input your password">#}
                   <br>
                   <br>
+
+                  <div class="bg-danger">{{ form.repeat_password.errors}}</div>
                   Repeat password <br>
                   {{ form.repeat_password }}
 {#                  <input type="password" class="edit" id="t5" placeholder="repeat password..." maxlength="120" style="width: 300px;" title = "Repeat your password">#}

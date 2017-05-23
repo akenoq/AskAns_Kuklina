@@ -2,31 +2,50 @@
 
 <!-- подключать, указывая app -->
 {% extends "askans/base.html" %}
+{% load i18n %}
 
-
+{% load staticfiles %}
 
 <!-- переопределяем базовый блок -->
-{% block title %} Tag {% endblock %}
+{% block title %} New {% endblock %}
 
 <!-- переопределяем базовый блок -->
 {% block main %}
-	{% for post in posts %}
-			<div>
-				<p>published: {{ post.published_date }}</p>
-				<h1><a href="">{{ post.title }}</a></h1>
-				<p>{{ post.text|linebreaksbr }}</p>
-			</div>
-	 {% endfor %}
+{#    {% url 'post_list' %}#}
+     <span><a href={% url 'post_list' %}>New questios</a>&nbsp;&nbsp;</span>
+     <span><a href={% url 'hot_list' %}>Popular questios</a></span>
+	{% for q in page %}
+<!-- QUESTION  -->
+<!--              <div class="question">-->
+<!-- LEFT BOX -->
+                  <div class="row question">
+                      <div class="col-md-3">
+{#                          было просто guest.png #}
+                            <img src="{% static 'pic/guest.png' %}" class="img-thumbnail avatar-q">
+                        <span class="label label-primary" style="margin-left: 10px; margin-bottom: 10px;"> {{ q.rating }} </span>
+                        <span class="label label-danger" style="margin-left: 10px;"> - </span>
+                 &nbsp; <span class="label label-success" style="margin-left: -7px;"> +</span>
+                        <br><br>
+                      </div>
+<!-- RIGHT BOX -->
+                      <div class="col-md-9">
+                        <br>
+<!--                          lead это выделенный параграф -->
+{#                        <p class="lead" style="text-decoration: underline;"><a href="/question/{{ q.id }}">{{ q.title }}</a></p>#}
+{#                      <p class="lead" style="text-decoration: underline;"><a href={% url 'question' id=q.id %}>{{ q.title }}</a></p>#}
+                       <p class="lead" style="text-decoration: underline;"><a href="{{ q.get_absolute_url }}">{{ q.title }}</a></p>
+                        <p class="preview-q">{{ q.text|linebreaksbr|truncatewords:"30" }}</p>
+                        <a href="#">Ответы <span class="badge">{{ q.answer_set.count }}</span></a>
+                          Tags: &nbsp;
+                      {% if q.tags.count > 0 %}
+                          {% for tag in q.tags.all %}
+                              <span><a href="{% url 'tag_list' tag.name %}">{{ tag.name }},</a></span>
+                          {% endfor %}
+                      {% endif%}
+                      </div>
+                  </div>
+    {% endfor %}
+
+    {% include "askans/paginator.html" %}
+
 {% endblock %}
-
-<!--
- {% for post in posts %}
-        <div>
-            <p>published: {{ post.published_date }}</p>
-            <h1><a href="">{{ post.title }}</a></h1>
-            <p>{{ post.text|linebreaksbr }}</p>
-        </div>
- {% endfor %}
-
-        </body>
-</html>-->

@@ -12,7 +12,7 @@ from django.views import View
 
 from askans import forms
 from askans.forms import LoginForm, SignUpForm, AnswerForm, SettingsForm
-from .models import Question, Answer
+from .models import Question, Answer, Tag
 from django.shortcuts import redirect
 from django.contrib import auth
 
@@ -66,6 +66,12 @@ def hot_list(request):
     posts, page_range = paginate(posts_all, request)
     return render(request, 'askans/hot_list.html', {'page': posts, 'page_range': page_range})
 
+def tag_list(request, tag_name):
+    t = get_object_or_404(Tag, name = tag_name)
+    posts_all = Question.objects.tag_questions(t.name)
+    posts, page_range = paginate(posts_all, request)
+    return render(request, 'askans/tag_list.html', {'page': posts, 'page_range': page_range, })
+
 #пока пробно с post моделью
 def question(request, id):
     q = get_object_or_404(Question, id=id) #QuerySet q, который пердаетм в шаблон
@@ -97,10 +103,10 @@ def question(request, id):
 
     return render(request, 'askans/question.html', {'q': q, 'page': posts, 'page_range': page_range, 'form': form})
 
-#с тэгами
-def tag_list(request,tag_name=None):
-    posts = Question.objects.last_questions()
-    return render(request, 'askans/tag_list.html', {'posts': posts})
+# #с тэгами
+# def tag_list(request,tag_name=None):
+#     posts = Question.objects.last_questions()
+#     return render(request, 'askans/tag_list.html', {'posts': posts})
 ################################доделать############################
 def login(request):
 

@@ -30,6 +30,10 @@ class QuestionManager(models.Manager):
     def last_questions(self):
         return self.order_by('published_date')
 
+    # https://djbook.ru/rel1.8/topics/db/queries.html#lookups-that-span-relationships
+    def tag_questions(self,tag_name):
+        return self.filter(tags__name__contains=tag_name)
+
     def publish(self):  # def - создаем функцию (метод публикации записи)
         self.published_date = timezone.now()
         self.save()
