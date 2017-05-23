@@ -99,9 +99,9 @@ class SignUpForm(forms.Form):
 
 
 class AskForm(forms.Form):
-    title = forms.CharField(widget=forms.TextInput(attrs={'class': 'form-control input-lg', 'placeholder': 'Enter the title here'}))
-    text = forms.CharField(widget=forms.Textarea(attrs={'class': 'form-control input-lg', 'placeholder': 'Enter your question here', 'rows': 20}))
-    tags = forms.CharField(widget=forms.TextInput(attrs={'class': 'form-control input-lg', 'placeholder': 'Enter tags separated by comma'}))
+    title = forms.CharField(widget=forms.TextInput(attrs={'class': 'form-control input', 'placeholder': 'Enter the title here'}))
+    text = forms.CharField(widget=forms.Textarea(attrs={'class': 'form-control input', 'placeholder': 'Enter your question here', 'rows': 20}))
+    tags = forms.CharField(widget=forms.TextInput(attrs={'class': 'form-control input', 'placeholder': 'Enter tags separated by comma'}))
 
     def save(self, user_id):
         data = self.cleaned_data
@@ -126,7 +126,7 @@ class AskForm(forms.Form):
 
 
 class AnswerForm(forms.Form):
-    text = forms.CharField(widget=forms.Textarea(attrs={'class': 'form-control input-lg', 'placeholder': 'Enter your answer here', 'rows': 5, }))
+    text = forms.CharField(widget=forms.Textarea(attrs={'class': 'form-control input', 'placeholder': 'Enter your answer here', 'rows': 5, }))
 
     def save(self, question_id, user_id):
         data = self.cleaned_data
@@ -161,7 +161,7 @@ class SettingsForm(forms.Form):
     def save(self, user_id):
         data = self.cleaned_data
         profile_id = User.objects.get(id=user_id).person.id
-        user = Person.objects.get(id = profile_id)
+        user = Person.objects.get(id=profile_id)
         # user.username = data['username']
         user.email = data['email']
         if data['avatar'] is not None:

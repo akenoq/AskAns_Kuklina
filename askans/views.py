@@ -204,10 +204,10 @@ def logout(request):
 def settings(request):
     user = request.user
 
-    # if not user.is_authenticated():
-    #     return redirect('post_list')
+    if not user.is_authenticated():
+        return redirect('post_list')
 
-    data = {'username': user.username, 'email': user.email, } #данные юзера
+    data = {'email': user.email} #данные юзера
 
     if request.method == 'POST':
         form = SettingsForm(request.POST, request.FILES, initial=data)

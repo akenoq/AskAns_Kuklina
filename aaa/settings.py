@@ -122,6 +122,17 @@ USE_TZ = True
 
 STATIC_URL = '/static/'
 
+# CHANNEL_LAYERS = {
+#     'default': {
+#         'BACKEND': 'asgi_redis.RedisChannelLayer',
+#         'CONFIG': {
+#             'hosts': [('localhost', 6379)],
+#         },
+#         'ROUTING': 'askans.routing.channel_routing',
+#     }
+# }
+
+
 # STATICFILES_DIRS = [
 #     os.path.join(BASE_DIR, "static"),
 #     '/var/www/static/',
