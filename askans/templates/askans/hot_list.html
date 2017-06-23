@@ -19,7 +19,8 @@
 <!-- LEFT BOX -->
                   <div class="row question">
                       <div class="col-md-3">
-                        <img src="{% static 'pic/guest.png' %}" class="img-thumbnail avatar-q">
+{#                        <img src="{% static 'pic/guest.png' %}" class="img-thumbnail avatar-q">#}
+                        <img src="{{q.author.avatar.url}}" class="avatar-qq">
                         <span class="label label-primary" style="margin-left: 10px; margin-bottom: 10px;"> {{ q.rating }} </span>
                         <span class="label label-danger" style="margin-left: 10px;"> - </span>
                  &nbsp; <span class="label label-success" style="margin-left: -7px;"> +</span>

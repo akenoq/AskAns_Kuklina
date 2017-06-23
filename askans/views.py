@@ -5,7 +5,7 @@ from django.utils import timezone
 #пагинатор
 from django.core.paginator import Paginator, EmptyPage, PageNotAnInteger
 #404 error
-from django.shortcuts import render, get_object_or_404
+from django.shortcuts import render, get_object_or_404, render_to_response
 from django.http import Http404
 #включаем модли определенные в соседнем (".") файле models.py
 from django.views import View
@@ -19,6 +19,7 @@ from django.contrib import auth
 from django.urls import reverse
 
 from django.http import HttpResponse, JsonResponse
+
 
 
 def paginate(objects_list, request):
@@ -70,7 +71,7 @@ def tag_list(request, tag_name):
     t = get_object_or_404(Tag, name = tag_name)
     posts_all = Question.objects.tag_questions(t.name)
     posts, page_range = paginate(posts_all, request)
-    return render(request, 'askans/tag_list.html', {'page': posts, 'page_range': page_range, })
+    return render(request, 'askans/tag_list.html', {'page': posts, 'page_range': page_range, 'tag_name':t.name })
 
 #пока пробно с post моделью
 def question(request, id):
@@ -227,6 +228,54 @@ def settings(request):
     })
 
 
-#     class UserFormView(View):
+class ClassJSON:
+    def createFields(self):
+        self.massNames = [];
+        self.massValues = [];
+        self.n = 0;
+    def addElement(self, name,value):
+        self.massNames.append(name);
+        self.massValues.append(value);
+        self.n += 1;
+    def getStringJSON(self):
+        s = "{";
+        for i in range(0,self.n):
+            name = self.massNames[i];
+            value = self.massValues[i];
+            s += ('"' + name + '":"' + value + '"');
+            if(i != self.n - 1):
+                s += ", ";
+        s += "}";
+        return s;
+
+def summa(request):
+    return render(request, 'askans/zzzSumma.html')
+
+def summa2(request):
+    s = request.GET.get('t1')
+    mass = []
+    mass = s.split("@")
+
+    a = int(mass[0])
+    b = int(mass[1])
+    sum = a + b
+
+    obj = ClassJSON();
+    obj.createFields();
+
+    obj.addElement("summa", str(sum));
+    obj.addElement("status", "Yes");
+    ss = obj.getStringJSON();
+
+    print(ss);
+
+    return HttpResponse(ss)
+
+
+
+
+
+
+    #     class UserFormView(View):
 #     form_class = UserForm
 #     return render()

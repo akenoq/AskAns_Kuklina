@@ -10,7 +10,8 @@
 
 <div class="row question">
                       <div class="col-md-3">
-                        <img src="{% static 'pic/guest.png' %}" class="img-thumbnail avatar-q">
+{#                        <img src="{% static 'pic/guest.png' %}" class="img-thumbnail avatar-q">#}
+                        <img src="{{q.author.avatar.url}}" class="avatar-qq">
                         <div style="color: #3e8f3e"> &nbsp;&nbsp;&nbsp;{{ q.author }} </div>
                         <span class="label label-primary" style="margin-left: 10px; margin-bottom: 10px;"> {{ q.rating }} </span>
                         <span class="label label-danger" style="margin-left: 10px;"> - </span>

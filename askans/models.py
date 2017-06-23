@@ -28,7 +28,7 @@ class QuestionManager(models.Manager):
         return self.order_by('-rating')
 
     def last_questions(self):
-        return self.order_by('published_date')
+        return self.order_by('-published_date')
 
     # https://djbook.ru/rel1.8/topics/db/queries.html#lookups-that-span-relationships
     def tag_questions(self,tag_name):

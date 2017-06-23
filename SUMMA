@@ -1,0 +1,79 @@
+*****************view******************
+def summa(request):
+    return render(request, 'askans/zzzSumma.html')
+
+def summa2(request):
+    s = request.GET.get('t1')
+    mass = []
+    mass = s.split("@")
+
+    a = int(mass[0])
+    b = int(mass[1])
+    sum = a + b
+    return HttpResponse(sum)
+
+
+
+****************url********************
+url(r'^summa/$', views.summa, name = 'summa'),
+url(r'^summa2/', views.summa2, name = 'summa2')
+
+
+
+****************js*********************
+<!doctype html>
+<html>
+<head>
+	<meta charset="UTF-8" />
+	<title>AJAX</title>
+</head>
+<body>
+
+<p><p>Введите 2 числа для поиска сумммы</p></p>
+<br>
+
+<form>
+	<p>Число А</p>
+	<input type = "text" id = "t1" name = "t1"><br><br>
+	<p>Число Б</p>
+	<input type = "text" id = "t2" name = "t2"><br><br>
+	<br>
+	<input type = "button" value = "Получить результат" onclick = "f()">
+</form>
+
+<br>
+<br>
+
+<h2 id = 'result'></h2>
+
+<script>
+	function f()
+	{
+		var t1 = document.getElementById('t1').value;
+		var t2 = document.getElementById('t2').value;
+
+        var s = "../summa2?t1=" + t1 + "@" + t2;
+		console.log(s);
+
+
+
+		var r = new XMLHttpRequest();
+		r.open("GET",s);
+		r.setRequestHeader("Content-Type","text/plain;charset=UTF-8");
+		r.send(null);
+		
+		r.onreadystatechange = function()
+		{
+			if(r.readyState === 4 && r.status === 200)
+			{
+				var answer = r.responseText;
+				document.getElementById('result').innerHTML = "Lol " + answer;
+			}
+		}
+
+	}
+</script>
+
+</body>
+</html>
+
