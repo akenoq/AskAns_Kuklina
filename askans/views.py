@@ -10,7 +10,7 @@ from django.http import Http404
 #включаем модли определенные в соседнем (".") файле models.py
 from django.views import View
 
-from askans import forms
+from askans import forms, models
 from askans.forms import LoginForm, SignUpForm, AnswerForm, SettingsForm
 from .models import Question, Answer, Tag
 from django.shortcuts import redirect
@@ -236,16 +236,15 @@ def qlike(request):
 
     like_or_dis = None
 
-    # if request.method == "POST":
-    #     questionId = request.POST.get('id', 0)
-    #     print(questionId)
-    #     likeOrDislike = request.POST.get('type', 1)
-    #     print(likeOrDislike)
-
-    if request.method == "GET":
-        s = request.GET.get('t')
+    if request.method == "POST":
+        s = request.POST.get('t','zzz')
         mass = s.split("@")
 
+#########################NORM#############################
+    # if request.method == "GET":
+    #     s = request.GET.get('t')
+    #     mass = s.split("@")
+##########################################################
         question_id = int(mass[0])
         print(question_id)
         # q = get_object_or_404(Question, id=question_id)
@@ -307,6 +306,92 @@ def qlike(request):
     #
     #
     # return HttpResponse(ss)
+
+def alike(request):
+    user = request.user
+    print('Trying to like question')
+
+    if not user.is_authenticated():
+        return JsonResponse({'status': 'error'})
+
+    like_or_dis = None
+
+    if request.method == "POST":
+        s = request.POST.get('t','zzz')
+        mass = s.split("@")
+
+        answer_id = int(mass[0])
+        print(answer_id)
+        # q = get_object_or_404(Question, id=question_id)
+
+        add_to_rating = 0
+
+        if mass[1] == 'p':  # t2 = plus or mine
+            print('PPPPPPPPP')  # печатает
+            like_or_dis = bool(1)
+            add_to_rating = 1
+
+        elif mass[1] == 'm':
+            print('MMMMMMMMM')
+            like_or_dis = bool(0)
+            add_to_rating = -1
+
+        try:
+            from askans import models
+            a = models.Answer.objects.get(id=answer_id)
+            print('try to find question', a.rating) # печатает
+
+        except:
+            print('Some error occured')
+            return JsonResponse({'status': 'error'})
+
+        try:
+            u_like = models.AnswerLike.objects.get(user=user.person, answer=a)
+        except:
+            u_like = None
+
+        if u_like == None:
+            print('try to like or dis') # печатает
+            # prof = models.User.objects.get(id=user.id).person
+            like = models.AnswerLike(user=user.person, answer=a, like=like_or_dis)
+            print('like')
+            like.save()
+
+            print('ZZZZZZZZZZZZZZZ')
+            a.rating += add_to_rating
+            print(a.rating)
+            a.save()
+            print(a.rating)
+
+        else:
+            print('except')
+            return JsonResponse({'status': 'Error: already liked this answer'})
+
+        return JsonResponse({'status': 'ok', 'result': a.rating})
+
+def acorrect(request):
+    user = request.user
+
+    if request.method == "POST":
+        answer_id = request.POST.get('id', 0)
+
+        try:
+            a = models.Answer.objects.get(id=answer_id)
+
+        except:
+            return JsonResponse({'status': 'Error, cannot find answer'})
+
+        print(user)
+        print(a.question.author.user)
+
+        if user == a.question.author.user:
+            a.correct = not a.correct
+            a.save()
+            return JsonResponse({'status': 'ok', 'result': a.correct})
+
+        else:
+            return JsonResponse({'status': 'Error, you are not allowed to choose correct answer'})
+
 
 
 class ClassJSON:

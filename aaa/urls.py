@@ -52,6 +52,8 @@ urlpatterns = [
     #############################не выходило##################################
 
     url(r'^qlike/$', views.qlike, name = 'qlike'),
+    url(r'^alike/$', views.alike, name = 'alike'),
+    url(r'^acorrect/$', views.acorrect, name = 'acorrect'),
     # url(r'^like_answer/$', views.like_answer, name = 'like_answer'),
     # url(r'^correct/$', views.correct_answer, name = 'correct')
 
