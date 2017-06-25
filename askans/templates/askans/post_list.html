@@ -19,15 +19,16 @@
 <!--              <div class="question">-->
 <!-- LEFT BOX -->
                   <div class="row question">
-
-                      <div class="col-md-3">
+                        {% include "askans/left_box.html" %}
+{#                  left_box.html             #}
+{#                      <div class="col-md-3">#}
 {#                          было просто guest.png #}
-                        <img src="{{q.author.avatar.url}}" class="avatar-qq">
-                        <span class="label label-primary" style="margin-left: 10px; margin-bottom: 10px;"> {{ q.rating }} </span>
-                        <span class="label label-danger" style="margin-left: 10px;"> - </span>
-                 &nbsp; <span class="label label-success" style="margin-left: -7px;"> +</span>
-                        <br><br>
-                      </div>
+{#                        <img src="{{q.author.avatar.url}}" class="avatar-qq">#}
+{#                        <span id="rating_{{ q.id }}" class="label label-primary" style="margin-left: 10px; margin-bottom: 10px;" > {{ q.rating }} </span>#}
+{#                        <span id="dislike_{{ q.id }}" class="label label-danger" style="margin-left: 10px;" onclick="f_dislike(this)"> - </span>#}
+{#                 &nbsp;      <span id="like_{{ q.id }}" class="label label-success" style="margin-left: -7px;" onclick="f_like(this)"> +</span>#}
+{#                        <br><br>#}
+{#                      </div>#}
 <!-- RIGHT BOX -->
                       <div class="col-md-9">
                         <br>

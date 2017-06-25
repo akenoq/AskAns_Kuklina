@@ -51,7 +51,7 @@ urlpatterns = [
     url(r'^settings/$', views.settings, name='settings'),
     #############################не выходило##################################
 
-    # url(r'^like_question/$', views.like_question, name = 'like_question'),
+    url(r'^qlike/$', views.qlike, name = 'qlike'),
     # url(r'^like_answer/$', views.like_answer, name = 'like_answer'),
     # url(r'^correct/$', views.correct_answer, name = 'correct')
 

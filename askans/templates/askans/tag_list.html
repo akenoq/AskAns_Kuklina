@@ -15,22 +15,14 @@
      <span><a href={% url 'post_list' %}>New questios</a>&nbsp;&nbsp;</span>
      <span><a href={% url 'hot_list' %}>Popular questios</a></span>
 
-     <h3>tag: <span style="color: #3de800; font-weight: bold">{{ tag_name }}</h3></span>
+     <h3>tag: <span style="color: #3de800; font-weight: boldзу">{{ tag_name }}</h3></span>
 
      {% for q in page %}
 <!-- QUESTION  -->
 <!--              <div class="question">-->
 <!-- LEFT BOX -->
                   <div class="row question">
-                      <div class="col-md-3">
-{#                          было просто guest.png #}
-{#                            <img src="{% static 'pic/guest.png' %}" class="img-thumbnail avatar-q">#}
-                        <img src="{{q.author.avatar.url}}" class="avatar-qq">
-                        <span class="label label-primary" style="margin-left: 10px; margin-bottom: 10px;"> {{ q.rating }} </span>
-                        <span class="label label-danger" style="margin-left: 10px;"> - </span>
-                 &nbsp; <span class="label label-success" style="margin-left: -7px;"> +</span>
-                        <br><br>
-                      </div>
+                      {% include "askans/left_box.html" %}
 <!-- RIGHT BOX -->
                       <div class="col-md-9">
                         <br>

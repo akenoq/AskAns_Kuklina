@@ -26,6 +26,13 @@
  
     <!-- MY.CSS -->
     <link rel="stylesheet" href="{% static 'p1_files/my.css' %}">
+    {% block libs %}
+        {% load staticfiles%}
+            <script src="{% static 'channels/js/websocketbridge.js' %}" type="text/javascript"></script>
+{#                <script src="https://code.jquery.com/jquery-3.2.1.min.js"></script>#}
+            <script src="{% static 'js/my.js' %}" type="text/javascript"></script>
+    {% endblock %}
+
 
   </head>
 
@@ -153,10 +160,5 @@
     <script src="{% static 'p1_files/bootstrap.min.js' %}"></script>
     <!-- IE10 viewport hack for Surface/desktop Windows 8 bug -->
     <script src="{% static 'p1_files/ie10-viewport-bug-workaround.js' %}"></script>
-    {% block libs %}
-                {% load staticfiles%}
-                <script src="{% static 'channels/js/websocketbridge.js' %}" type="text/javascript"></script>
-{#                <script src="https://code.jquery.com/jquery-3.2.1.min.js"></script>#}
-    {% endblock %}
 
 </body></html>

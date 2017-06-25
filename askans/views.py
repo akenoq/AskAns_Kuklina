@@ -227,6 +227,87 @@ def settings(request):
         'form': form
     })
 
+def qlike(request):
+    user = request.user
+    print('Trying to like question')
+
+    if not user.is_authenticated():
+        return JsonResponse({'status': 'error'})
+
+    like_or_dis = None
+
+    # if request.method == "POST":
+    #     questionId = request.POST.get('id', 0)
+    #     print(questionId)
+    #     likeOrDislike = request.POST.get('type', 1)
+    #     print(likeOrDislike)
+
+    if request.method == "GET":
+        s = request.GET.get('t')
+        mass = s.split("@")
+
+        question_id = int(mass[0])
+        print(question_id)
+        # q = get_object_or_404(Question, id=question_id)
+
+        add_to_rating = 0
+
+        if mass[1] == 'p':  # t2 = plus or mine
+            print('PPPPPPPPP')  # печатает
+            like_or_dis = bool(1)
+            add_to_rating = 1
+
+        elif mass[1] == 'm':
+            print('MMMMMMMMM')
+            like_or_dis = bool(0)
+            add_to_rating = -1
+
+        try:
+            from askans import models
+            q = models.Question.objects.get(id=question_id)
+            print('try to find question', q.rating) # печатает
+
+        except:
+            print('Some error occured')
+            return JsonResponse({'status': 'error'})
+
+        try:
+            u_like = models.QuestionLike.objects.get(user=user.person, question=q)
+        except:
+            u_like = None
+
+        if u_like == None:
+            print('try to like or dis') # печатает
+            # prof = models.User.objects.get(id=user.id).person
+            like = models.QuestionLike(user=user.person, question=q, like=like_or_dis)
+            print('like')
+            like.save()
+
+            print('ZZZZZZZZZZZZZZZ')
+            q.rating += add_to_rating
+            print(q.rating)
+            q.save()
+            print(q.rating)
+
+        else:
+            print('except')
+            return JsonResponse({'status': 'Error: already liked this question'})
+
+        return JsonResponse({'status': 'ok', 'result': q.rating})
+
+    # s = request.GET.get('t')
+    # mass = []
+    # mass = s.split("@")
+    #
+    # question_id = int(mass[0])
+    # q = get_object_or_404(Question, id=question_id)
+    #
+    # if mass[1]=='p': #t2 = plus or mine
+    #     q.rating += 1
+    #
+    #
+    # return HttpResponse(ss)
+
 
 class ClassJSON:
     def createFields(self):
