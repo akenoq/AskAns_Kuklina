@@ -1,0 +1,12 @@
+<div class="col-md-3">
+                          <img src="{{q.author.avatar.url}}" class="avatar-qq">
+                          <div style="color: #3e8f3e"> &nbsp;&nbsp;&nbsp;{{ q.author }} </div>
+                          <span id="rating_{{ q.id }}" class="label label-primary" style="margin-left: 10px; margin-bottom: 10px;" > {{ q.rating }} </span>
+                          {% if user.is_authenticated %}
+                              <span id="adislike_{{ q.id }}" class="label label-danger" style="margin-left: 10px; cursor: pointer;" onclick="f_dislike(this)"> - </span>
+                  &nbsp;      <span id="alike_{{ q.id }}" class="label label-success" style="margin-left: -7px; cursor: pointer;" onclick="f_like(this)"> +</span>
+                          {% else %}
+                              &nbsp;rating
+                          {% endif %}
+                        <br><br>
+                      </div>
